@@ -22,14 +22,16 @@ export const DesktopNav = ({ isOverlay }: DesktopNavProps) => {
     : "bg-yellow-300 border-yellow-300";
 
   const navLinkClass = (href: string) => {
-    const isActive = href === "/" ? pathname === "/" : pathname === href;
+  const isActive = href === "/" ? pathname === "/" : pathname === href;
 
-    return `group relative ${isActive && !isOverlay ? "text-emerald-700" : linkClass} text-sm font-bold box-border caret-transparent inline tracking-[0.01em] leading-[21px] min-h-0 min-w-0 outline-[3px] text-nowrap px-1 py-2 transition-colors duration-300 md:text-[15px] md:block md:leading-[22px] md:min-h-[auto] md:min-w-[auto]`;
-  };
+  return `group relative ${
+    isActive && !isOverlay ? "text-emerald-700" : linkClass
+  } text-xs lg:text-sm font-bold box-border caret-transparent inline tracking-[0.01em] leading-[21px] min-h-0 min-w-0 outline-[3px] text-nowrap px-1 py-2 transition-colors duration-300`;
+};
 
   return (
-    <div className="hidden md:flex items-center justify-end gap-x-4 xl:gap-x-6">
-      <div className="hidden md:flex items-center gap-x-5 xl:gap-x-8">
+    <div className="hidden desktop:flex items-center justify-end gap-x-2 lg:gap-x-3 xl:gap-x-6">
+      <div className="hidden desktop:flex items-center gap-x-1.5 lg:gap-x-2 xl:gap-x-5">
         <Link href="/" className={navLinkClass("/")}>
           <span className="relative text-sm box-border caret-transparent leading-[21px] outline-[3px] text-nowrap z-10 md:text-[15px] md:leading-[22px]">
             Home
@@ -57,20 +59,21 @@ export const DesktopNav = ({ isOverlay }: DesktopNavProps) => {
       </div>
       <Link
         href="/plans"
-        className={`items-center ${addPropertyClass} box-border caret-transparent gap-x-2 hidden leading-4 min-h-0 min-w-0 outline-[3px] gap-y-2 text-nowrap px-4 py-3 lg:px-6 rounded-xl border border-solid transition-all duration-300 hover:-translate-y-0.5 md:text-base md:flex md:leading-5 md:min-h-[auto] md:min-w-[auto]`}
+        className={`items-center ${addPropertyClass} box-border caret-transparent gap-x-1.5 hidden leading-4 min-h-0 min-w-0 outline-[3px] gap-y-2 text-nowrap px-2 py-2 desktop:px-3 lg:px-4 rounded-xl border border-solid transition-all duration-300 hover:-translate-y-0.5 text-sm desktop:flex`}     
       >
-        <Edit className="h-4 w-4 text-slate-900" />
-        <span className="text-xs box-border caret-transparent hidden font-semibold leading-4 min-h-0 min-w-0 outline-[3px] text-nowrap text-slate-900 md:text-sm md:block md:leading-5 md:min-h-[auto] md:min-w-[auto]">
+        <Edit className="h-3.5 w-3.5 desktop:h-4 desktop:w-4 text-slate-900" />
+        <span className="text-[11px] lg:text-sm box-border caret-transparent hidden font-semibold desktop:block text-slate-900">
           Add a Property
         </span>
       </Link>
       <Link
         href="/contact-us"
-        className="relative text-slate-900 text-xs font-bold items-center bg-yellow-300 shadow-[0_14px_24px_-14px_rgba(250,204,21,0.75)] caret-transparent gap-x-2 flex justify-center leading-4 outline-[3px] gap-y-2 text-center text-nowrap border border-yellow-300 overflow-hidden px-4 py-3 lg:px-6 rounded-xl transition-all duration-300 hover:-translate-y-0.5 hover:bg-yellow-400 md:text-base md:leading-5"
+        className="relative text-slate-900 font-bold items-center bg-yellow-300 shadow-[0_14px_24px_-14px_rgba(250,204,21,0.75)] caret-transparent gap-x-1.5 flex justify-center text-center text-nowrap border border-yellow-300 overflow-hidden px-2 py-2 desktop:px-3 lg:px-4 rounded-xl transition-all duration-300 hover:-translate-y-0.5 hover:bg-yellow-400"
       >
-        <span className="relative text-xs items-center box-border caret-transparent gap-x-2 flex leading-4 min-h-0 min-w-0 outline-[3px] gap-y-2 text-nowrap z-10 md:text-sm md:leading-5 md:min-h-[auto] md:min-w-[auto]">
-          <ArrowRightToLine className="h-4 w-4" />
-          <span className="text-xs box-border caret-transparent hidden leading-4 min-h-0 min-w-0 outline-[3px] text-nowrap md:text-sm md:block md:leading-5 md:min-h-[auto] md:min-w-[auto]">
+        <span className="relative flex items-center gap-x-1.5 text-nowrap z-10">
+          <ArrowRightToLine className="h-3.5 w-3.5 desktop:h-4 desktop:w-4" />
+
+          <span className="hidden desktop:block text-[11px] lg:text-sm leading-none">
             Sign In
           </span>
         </span>
@@ -80,7 +83,7 @@ export const DesktopNav = ({ isOverlay }: DesktopNavProps) => {
           type="button"
           aria-expanded={isMenuOpen}
           onClick={() => setIsMenuOpen((current) => !current)}
-          className={`text-slate-900 text-sm font-medium items-center ${menuClass} caret-transparent inline-flex shrink-0 h-11 justify-center leading-5 min-h-0 min-w-0 outline-[3px] text-center text-nowrap w-11 border p-0 rounded-xl transition-all duration-300 hover:-translate-y-0.5 md:flex md:min-h-[auto] md:min-w-[auto]`}
+          className={`text-slate-900 text-sm font-medium items-center ${menuClass} caret-transparent inline-flex shrink-0 h-10 justify-center leading-5 min-h-0 min-w-0 outline-[3px] text-center text-nowrap w-10 border p-0 rounded-xl transition-all duration-300 hover:-translate-y-0.5 desktop:flex md:min-h-[auto] md:min-w-[auto]`}
         >
           <Menu className="h-4 w-4" />
         </button>
@@ -128,8 +131,8 @@ export const DesktopNav = ({ isOverlay }: DesktopNavProps) => {
                     const isActive = pathname === href || (href === "/" && pathname === "/");
                     return (
                       <Link
-                        key={href}
-                        href={href}
+                        key={href as string}
+                        href={href as string}
                         onClick={() => setIsMenuOpen(false)}
                         className={`flex items-center gap-4 p-3 text-lg transition-colors font-semibold rounded-lg ${
                           isActive

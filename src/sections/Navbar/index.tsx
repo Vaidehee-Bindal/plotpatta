@@ -29,7 +29,7 @@ export const Navbar = () => {
           : "border-b border-slate-200/80 bg-white/95 shadow-[0_4px_18px_rgba(15,23,42,0.08)] backdrop-blur-md"
       }`}
     >
-      <div className="flex items-center justify-between h-16 max-w-screen-2xl mx-auto px-4 md:px-10 py-2">
+      <div className="flex items-center justify-between h-16 max-w-screen-2xl mx-auto px-2 desktop:px-4 xl:px-10 py-2">
         <NavbarLogo isOverlay={isOverlay} />
         <MobileNavActions isOverlay={isOverlay} />
         <DesktopNav isOverlay={isOverlay} />

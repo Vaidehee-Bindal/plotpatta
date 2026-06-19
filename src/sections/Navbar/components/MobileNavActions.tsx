@@ -83,12 +83,12 @@ export const MobileNavActions = ({ isOverlay }: MobileNavActionsProps) => {
         <>
           {/* Backdrop */}
           <div
-            className="fixed inset-0 z-40 bg-black/50 md:hidden"
+            className="fixed inset-0 z-40 bg-black/50 desktop:hidden"
             onClick={() => setIsMenuOpen(false)}
           />
 
           {/* Sidebar */}
-          <div className="fixed right-0 top-0 z-50 h-full w-96 max-w-[100vw] bg-white shadow-2xl md:hidden flex flex-col">
+          <div className="fixed right-0 top-0 z-50 h-full w-96 max-w-[100vw] bg-white shadow-2xl desktop:hidden flex flex-col">
             <div className="flex items-center justify-between p-6 border-b">
               <div className="text-xl font-extrabold text-gray-900 bg-amber-400 px-3 py-1.5 rounded">
                 PLOTPATTA.COM

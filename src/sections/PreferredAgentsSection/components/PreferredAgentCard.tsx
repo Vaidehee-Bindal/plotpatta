@@ -14,7 +14,7 @@ export const PreferredAgentCard = (props: PreferredAgentCardProps) => {
       role="group"
       className="box-border caret-transparent basis-[90%] shrink-0 min-h-[auto] outline-[3px] px-2 md:basis-3/12"
     >
-      <div className="bg-white shadow-[rgba(0,0,0,0)_0px_0px_0px_0px,rgba(0,0,0,0)_0px_0px_0px_0px,rgba(0,0,0,0.05)_0px_1px_2px_0px] box-border caret-transparent shrink-0 outline-[3px] border border-gray-200 overflow-hidden rounded-md border-solid">
+      <div className="bg-white shadow-[rgba(0,0,0,0)_0px_0px_0px_0px,rgba(0,0,0,0)_0px_0px_0px_0px,rgba(0,0,0,0.05)_0px_1px_2px_0px] box-border caret-transparent shrink-0 outline-[3px] border border-gray-200 overflow-hidden rounded-md border-solid transition-all duration-300 hover:-translate-y-1 hover:shadow-lg hover:border-blue-400">
         <div className="items-center bg-[linear-gradient(to_right,rgb(59,130,246),rgb(37,99,235))] box-border caret-transparent flex justify-between outline-[3px] px-4 py-3">
           <div className="items-center box-border caret-transparent gap-x-3 flex min-h-[auto] min-w-[auto] outline-[3px] gap-y-3">
             <div className="text-blue-600 font-bold items-center bg-white box-border caret-transparent flex h-10 justify-center min-h-[auto] min-w-[auto] outline-[3px] w-10 rounded-full border-2 border-solid border-white md:h-12 md:w-12">
@@ -42,7 +42,7 @@ export const PreferredAgentCard = (props: PreferredAgentCardProps) => {
           </p>
         </div>
         <div className="box-border caret-transparent outline-[3px] px-4 py-3">
-          <button className="text-white text-sm font-semibold bg-blue-600 caret-transparent leading-5 outline-[3px] text-center w-full px-0 py-2 rounded-md">
+          <button className="text-white text-sm font-semibold bg-blue-600 caret-transparent leading-5 outline-[3px] text-center w-full px-0 py-2 rounded-md transition-all duration-300 hover:-translate-y-0.5 hover:bg-blue-700 hover:shadow-lg">
             {props.buttonText}
           </button>
         </div>

@@ -16,14 +16,14 @@ export const BigChunkCard = (props: BigChunkCardProps) => {
       role="group"
       className="box-border caret-transparent basis-[85%] shrink-0 min-h-[auto] outline-[3px] px-2 md:basis-[33.6%]"
     >
-      <div className="relative text-slate-950 bg-white shadow-[rgba(0,0,0,0)_0px_0px_0px_0px,rgba(0,0,0,0)_0px_0px_0px_0px,rgba(0,0,0,0.05)_0px_1px_2px_0px] box-border caret-transparent flex flex-col h-auto outline-[3px] border border-gray-200 overflow-hidden mb-6 rounded-md border-solid md:h-[420px]">
+      <div className="group relative text-slate-950 bg-white shadow-[rgba(0,0,0,0)_0px_0px_0px_0px,rgba(0,0,0,0)_0px_0px_0px_0px,rgba(0,0,0,0.05)_0px_1px_2px_0px] box-border caret-transparent flex flex-col h-auto outline-[3px] border border-gray-200 overflow-hidden mb-6 rounded-md border-solid transition-all duration-300 hover:-translate-y-1 hover:shadow-lg hover:border-indigo-400 md:h-[420px]">
         <div className="relative box-border caret-transparent min-h-[auto] min-w-[auto] outline-[3px] w-full">
           <div className="relative box-border caret-transparent outline-[3px] w-full overflow-hidden rounded-t-md">
             <div className="box-border caret-transparent flex h-[150px] outline-[3px] w-full md:h-[200px]">
               <Image
                 src={props.imageUrl}
                 alt="Residential plot / land for sale"
-                className="box-border caret-transparent h-full max-w-full min-h-[auto] min-w-[auto] object-cover outline-[3px] w-full"
+                className="box-border caret-transparent h-full max-w-full min-h-[auto] min-w-[auto] object-cover outline-[3px] w-full transition-transform duration-500 group-hover:scale-110"
               />
             </div>
           </div>
@@ -36,14 +36,14 @@ export const BigChunkCard = (props: BigChunkCardProps) => {
             BIG CHUNK
           </div>
           <div className="absolute box-border caret-transparent gap-x-1 flex outline-[3px] gap-y-1 z-10 right-2 top-2 md:gap-x-2 md:gap-y-2">
-            <button className="text-sm font-medium items-center bg-white caret-transparent flex h-7 justify-center leading-5 min-h-[auto] min-w-[auto] outline-[3px] text-center text-nowrap w-7 border border-slate-200 p-0 rounded-md md:h-8 md:w-8">
+            <button className="text-sm font-medium items-center bg-white caret-transparent flex h-7 justify-center leading-5 min-h-[auto] min-w-[auto] outline-[3px] text-center text-nowrap w-7 border border-slate-200 p-0 rounded-md transition-all duration-200 hover:-translate-y-0.5 hover:bg-slate-50 hover:border-slate-300 md:h-8 md:w-8">
               <Image
-                src="https://c.animaapp.com/mqj9un6oir889A/assets/icon-43.svg"
+                src="https://c.animaapp.com/mqj9un6oir889A/assets/icon-42.svg"
                 alt="Icon"
                 className="box-border caret-transparent h-4 outline-[3px] text-nowrap w-4"
               />
             </button>
-            <button className="text-sm font-medium items-center bg-white caret-transparent flex h-7 justify-center leading-5 min-h-[auto] min-w-[auto] outline-[3px] text-center text-nowrap w-7 border border-slate-200 p-0 rounded-md md:h-8 md:w-8">
+            <button className="text-sm font-medium items-center bg-white caret-transparent flex h-7 justify-center leading-5 min-h-[auto] min-w-[auto] outline-[3px] text-center text-nowrap w-7 border border-slate-200 p-0 rounded-md transition-all duration-200 hover:-translate-y-0.5 hover:bg-slate-50 hover:border-slate-300 md:h-8 md:w-8">
               <Image
                 src="https://c.animaapp.com/mqj9un6oir889A/assets/icon-13.svg"
                 alt="Icon"
@@ -179,7 +179,7 @@ export const BigChunkCard = (props: BigChunkCardProps) => {
             <div className="items-center box-border caret-transparent flex min-h-[auto] min-w-[auto] outline-[3px]">
               <button
                 type="button"
-                className="text-white font-medium items-center bg-slate-900 bg-[linear-gradient(to_right,rgb(99,102,241),rgb(6,182,212))] caret-transparent gap-x-4 flex h-10 justify-center min-h-[auto] min-w-[auto] outline-[3px] gap-y-4 text-center text-nowrap w-full px-6 py-2 rounded-bl rounded-br rounded-tl rounded-tr"
+                className="text-white font-medium items-center bg-slate-900 bg-[linear-gradient(to_right,rgb(99,102,241),rgb(6,182,212))] caret-transparent gap-x-4 flex h-10 justify-center min-h-[auto] min-w-[auto] outline-[3px] gap-y-4 text-center text-nowrap w-full px-6 py-2 rounded-bl rounded-br rounded-tl rounded-tr transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg"
               >
                 <span className="text-sm box-border caret-transparent flex leading-5 min-h-[auto] min-w-[auto] outline-[3px] text-nowrap md:hidden md:min-h-0 md:min-w-0">
                   Contact

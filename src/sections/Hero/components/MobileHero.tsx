@@ -2,7 +2,7 @@ import { Image } from "@/components/ui/OptimizedImage";
 
 export const MobileHero = () => {
   return (
-    <div className="relative box-border caret-transparent block h-[250px] outline-[3px] w-full bg-center mb-64 md:hidden md:h-[420px] md:mb-28">
+    <div className="relative box-border caret-transparent block h-[250px] outline-[3px] w-full bg-center mb-64 desktop:hidden md:h-[420px] md:mb-28">
       <div className="bg-[linear-gradient(to_right_bottom,rgb(187,247,208),rgb(220,252,231),rgb(255,255,255))] box-border caret-transparent outline-[3px] text-center w-full border-emerald-200 pt-24 pb-8 px-6 border-b border-solid md:px-20">
         <div className="box-border caret-transparent max-w-screen-md outline-[3px] mx-auto pt-4">
           <p className="text-emerald-700 text-sm font-semibold box-border caret-transparent tracking-[0.35px] leading-5 outline-[3px] uppercase mb-2">
@@ -16,7 +16,7 @@ export const MobileHero = () => {
             more — all in one place.
           </p>
         </div>
-        <div className="box-border caret-transparent block outline-[3px] mt-6 md:hidden">
+        <div className="box-border caret-transparent block outline-[3px] mt-6 desktop:hidden">
           <div className="bg-yellow-300 shadow-[rgba(0,0,0,0)_0px_0px_0px_0px,rgba(0,0,0,0)_0px_0px_0px_0px,rgba(0,0,0,0.1)_0px_20px_25px_-5px,rgba(0,0,0,0.1)_0px_8px_10px_-6px] box-border caret-transparent max-w-screen-lg outline-[3px] w-full p-5 rounded-2xl md:p-6">
             <div className="box-border caret-transparent gap-x-2 flex outline-[3px] gap-y-2">
               <button

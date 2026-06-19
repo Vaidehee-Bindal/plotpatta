@@ -38,7 +38,7 @@ export const PlotCategoryCard = (props: PlotCategoryCardProps) => {
         <p className="text-gray-600 text-sm box-border caret-transparent leading-[22.75px] min-h-[auto] min-w-[auto] outline-[3px]">
           {props.description}
         </p>
-        <button className="text-white text-sm font-semibold bg-indigo-600 shadow-[rgba(0,0,0,0)_0px_0px_0px_0px,rgba(0,0,0,0)_0px_0px_0px_0px,rgba(0,0,0,0.05)_0px_1px_2px_0px] caret-transparent block leading-5 min-h-[auto] min-w-[auto] outline-[3px] text-center w-fit mt-4 px-4 py-2 rounded-lg">
+        <button className="text-white text-sm font-semibold bg-indigo-600 shadow-[rgba(0,0,0,0)_0px_0px_0px_0px,rgba(0,0,0,0)_0px_0px_0px_0px,rgba(0,0,0,0.05)_0px_1px_2px_0px] caret-transparent block leading-5 min-h-[auto] min-w-[auto] outline-[3px] text-center w-fit mt-4 px-4 py-2 rounded-lg transition-all duration-300 hover:-translate-y-0.5 hover:bg-indigo-700 hover:shadow-lg">
           {props.buttonText}
         </button>
       </div>
