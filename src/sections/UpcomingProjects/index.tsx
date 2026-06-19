@@ -1,3 +1,5 @@
+import { Image } from "@/components/ui/OptimizedImage";
+
 export const UpcomingProjects = () => {
   return (
     <div className="box-border caret-transparent max-w-none min-h-64 outline-[3px] plotpatta-wide mt-4 mb-14 mx-auto px-4">
@@ -15,12 +17,12 @@ export const UpcomingProjects = () => {
             </p>
           </div>
         </div>
-        <div className="bg-teal-900 shadow-[rgba(0,0,0,0)_0px_0px_0px_0px,rgba(0,0,0,0)_0px_0px_0px_0px,rgba(0,0,0,0.1)_0px_10px_15px_-3px,rgba(0,0,0,0.1)_0px_4px_6px_-4px] box-border caret-transparent outline-[3px] border-yellow-500 overflow-hidden rounded-xl border-2 border-solid">
+        <div className="group bg-teal-900 shadow-[rgba(0,0,0,0)_0px_0px_0px_0px,rgba(0,0,0,0)_0px_0px_0px_0px,rgba(0,0,0,0.1)_0px_10px_15px_-3px,rgba(0,0,0,0.1)_0px_4px_6px_-4px] box-border caret-transparent outline-[3px] border-yellow-500 overflow-hidden rounded-xl border-2 border-solid transition-all duration-300 hover:-translate-y-1 hover:shadow-xl">
           <div className="relative box-border caret-transparent outline-[3px] overflow-hidden">
-            <img
+            <Image
               src="https://c.animaapp.com/mqj9un6oir889A/assets/Black_and_White_Simple_Coming_Soon_Video_qa7zxp_1_mosud0.webp"
               alt="Aerial view of a residential plot layout with numbered plots and surrounding greenery"
-              className="aspect-[auto_1920_/_1080] box-border caret-transparent h-[220px] max-w-full object-contain outline-[3px] w-full md:h-[512px]"
+              className="aspect-[auto_1920_/_1080] box-border caret-transparent h-[220px] max-w-full object-contain outline-[3px] w-full transition-transform duration-500 ease-out group-hover:scale-105 md:h-[512px]"
             />
           </div>
         </div>

@@ -1,3 +1,5 @@
+import { Image } from "@/components/ui/OptimizedImage";
+
 export const FooterBottom = () => {
   return (
     <div className="text-neutral-600 text-xs items-center box-border caret-transparent flex flex-col justify-between leading-4 outline-[3px] md:text-sm md:flex-row md:leading-5">
@@ -13,7 +15,7 @@ export const FooterBottom = () => {
             className="text-xs items-center bg-teal-800 box-border caret-transparent flex h-10 justify-center leading-4 min-h-0 min-w-0 outline-[3px] text-center w-10 p-2 rounded-full md:text-sm md:leading-5 md:min-h-[auto] md:min-w-[auto] md:text-left"
           >
             <span className="text-white text-xs box-border caret-transparent block leading-4 min-h-0 min-w-0 outline-[3px] text-center md:text-sm md:leading-5 md:min-h-[auto] md:min-w-[auto] md:text-left">
-              <img
+              <Image
                 src="https://c.animaapp.com/mqj9un6oir889A/assets/icon-53.svg"
                 alt="Icon"
                 className="text-xs box-border caret-transparent h-[18px] leading-4 outline-[3px] text-center w-[18px] md:text-sm md:leading-5 md:text-left"
@@ -26,7 +28,7 @@ export const FooterBottom = () => {
             className="text-xs items-center bg-teal-800 box-border caret-transparent flex h-10 justify-center leading-4 min-h-0 min-w-0 outline-[3px] text-center w-10 p-2 rounded-full md:text-sm md:leading-5 md:min-h-[auto] md:min-w-[auto] md:text-left"
           >
             <span className="text-white text-xs box-border caret-transparent block leading-4 min-h-0 min-w-0 outline-[3px] text-center md:text-sm md:leading-5 md:min-h-[auto] md:min-w-[auto] md:text-left">
-              <img
+              <Image
                 src="https://c.animaapp.com/mqj9un6oir889A/assets/icon-54.svg"
                 alt="Icon"
                 className="text-xs box-border caret-transparent h-[18px] leading-4 outline-[3px] text-center w-[18px] md:text-sm md:leading-5 md:text-left"
@@ -39,7 +41,7 @@ export const FooterBottom = () => {
             className="text-xs items-center bg-teal-800 box-border caret-transparent flex h-10 justify-center leading-4 min-h-0 min-w-0 outline-[3px] text-center w-10 p-2 rounded-full md:text-sm md:leading-5 md:min-h-[auto] md:min-w-[auto] md:text-left"
           >
             <span className="text-white text-xs box-border caret-transparent block leading-4 min-h-0 min-w-0 outline-[3px] text-center md:text-sm md:leading-5 md:min-h-[auto] md:min-w-[auto] md:text-left">
-              <img
+              <Image
                 src="https://c.animaapp.com/mqj9un6oir889A/assets/icon-55.svg"
                 alt="Icon"
                 className="text-xs box-border caret-transparent h-[18px] leading-4 outline-[3px] text-center w-[18px] md:text-sm md:leading-5 md:text-left"
@@ -52,7 +54,7 @@ export const FooterBottom = () => {
             className="text-xs items-center bg-teal-800 box-border caret-transparent flex h-10 justify-center leading-4 min-h-0 min-w-0 outline-[3px] text-center w-10 p-2 rounded-full md:text-sm md:leading-5 md:min-h-[auto] md:min-w-[auto] md:text-left"
           >
             <span className="text-white text-xs box-border caret-transparent block leading-4 min-h-0 min-w-0 outline-[3px] text-center md:text-sm md:leading-5 md:min-h-[auto] md:min-w-[auto] md:text-left">
-              <img
+              <Image
                 src="https://c.animaapp.com/mqj9un6oir889A/assets/icon-56.svg"
                 alt="Icon"
                 className="text-xs box-border caret-transparent h-[18px] leading-4 outline-[3px] text-center w-[18px] md:text-sm md:leading-5 md:text-left"
@@ -65,7 +67,7 @@ export const FooterBottom = () => {
             className="text-xs items-center bg-teal-800 box-border caret-transparent flex h-10 justify-center leading-4 min-h-0 min-w-0 outline-[3px] text-center w-10 p-2 rounded-full md:text-sm md:leading-5 md:min-h-[auto] md:min-w-[auto] md:text-left"
           >
             <span className="text-white text-xs box-border caret-transparent block leading-4 min-h-0 min-w-0 outline-[3px] text-center md:text-sm md:leading-5 md:min-h-[auto] md:min-w-[auto] md:text-left">
-              <img
+              <Image
                 src="https://c.animaapp.com/mqj9un6oir889A/assets/icon-57.svg"
                 alt="Icon"
                 className="text-xs box-border caret-transparent h-[18px] leading-4 outline-[3px] text-center w-[18px] md:text-sm md:leading-5 md:text-left"

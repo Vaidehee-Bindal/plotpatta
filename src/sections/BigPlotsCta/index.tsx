@@ -1,3 +1,5 @@
+import { Image } from "@/components/ui/OptimizedImage";
+
 export const BigPlotsCta = () => {
   return (
     <section className="box-border caret-transparent max-w-none outline-[3px] plotpatta-wide mt-10 mb-16 mx-auto px-4">
@@ -5,7 +7,7 @@ export const BigPlotsCta = () => {
         <div className="items-center box-border caret-transparent gap-x-10 grid grid-cols-[repeat(1,minmax(0px,1fr))] outline-[3px] gap-y-10 p-8 md:grid-cols-[repeat(2,minmax(0px,1fr))] md:p-12">
           <div className="text-white box-border caret-transparent min-h-[auto] min-w-[auto] outline-[3px]">
             <div className="text-emerald-200 font-semibold items-center box-border caret-transparent gap-x-2 flex outline-[3px] gap-y-2 mb-3">
-              <img
+              <Image
                 src="https://c.animaapp.com/mqj9un6oir889A/assets/icon-48.svg"
                 alt="Icon"
                 className="text-xl box-border caret-transparent h-5 leading-7 outline-[3px] w-5"
@@ -47,7 +49,7 @@ export const BigPlotsCta = () => {
                   type="button"
                   className="font-semibold items-center bg-transparent caret-transparent gap-x-2 flex outline-[3px] gap-y-2 text-center border px-6 py-3 rounded-xl border-white/30"
                 >
-                  <img
+                  <Image
                     src="https://c.animaapp.com/mqj9un6oir889A/assets/icon-49.svg"
                     alt="Icon"
                     className="text-green-300 text-lg box-border caret-transparent h-[18px] leading-7 outline-[3px] w-[18px]"
@@ -60,7 +62,7 @@ export const BigPlotsCta = () => {
           <div className="box-border caret-transparent flex justify-center min-h-[auto] min-w-[auto] outline-[3px] md:justify-end">
             <div className="bg-white shadow-[rgba(0,0,0,0)_0px_0px_0px_0px,rgba(0,0,0,0)_0px_0px_0px_0px,rgba(0,0,0,0.1)_0px_20px_25px_-5px,rgba(0,0,0,0.1)_0px_8px_10px_-6px] box-border caret-transparent min-h-[auto] min-w-[auto] outline-[3px] w-[280px] p-4 rounded-2xl">
               <div className="items-center bg-[linear-gradient(to_right_bottom,rgb(209,250,229),rgb(236,252,203))] box-border caret-transparent flex h-44 justify-center outline-[3px] rounded-xl">
-                <img
+                <Image
                   src="https://c.animaapp.com/mqj9un6oir889A/assets/icon-50.svg"
                   alt="Icon"
                   className="text-emerald-600 text-6xl box-border caret-transparent h-[60px] leading-[60px] outline-[3px] w-[60px]"

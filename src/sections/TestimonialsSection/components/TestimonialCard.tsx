@@ -1,3 +1,5 @@
+import { Image } from "@/components/ui/OptimizedImage";
+
 export type TestimonialCardProps = {
   accentClassName: string;
   initials: string;
@@ -45,7 +47,7 @@ export const TestimonialCard = (props: TestimonialCardProps) => {
       <div className="items-center box-border caret-transparent gap-x-2 flex outline-[3px] gap-y-2 mt-4">
         <div className="text-yellow-400 box-border caret-transparent gap-x-1 flex min-h-[auto] min-w-[auto] outline-[3px] gap-y-1">
           {starIcons.map((starIcon) => (
-            <img
+            <Image
               key={starIcon}
               src="https://c.animaapp.com/mqj9un6oir889A/assets/icon-51.svg"
               alt="Icon"

@@ -1,3 +1,9 @@
+"use client";
+
+import { CheckCircle2, ChevronLeft, ChevronRight, Heart, Link2, Phone, Share2, Ruler, Building2 } from "lucide-react";
+import { useState } from "react";
+import { Image } from "@/components/ui/OptimizedImage";
+
 export type ProjectCarouselProps = {
   variant: string;
   projects: {
@@ -22,634 +28,331 @@ export type ProjectCarouselProps = {
   }[];
 };
 
-export const ProjectCarousel = (props: ProjectCarouselProps) => {
-  const isFeatured = props.variant === "featured";
+const slugify = (value: string) =>
+  value
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/(^-|-$)/g, "");
 
-  return isFeatured ? (
-    <div className="relative box-border caret-transparent outline-[3px] w-full items-center flex justify-center min-h-[400px] md:min-h-[500px]">
-      <div
-        role="region"
-        className="box-border caret-transparent outline-[3px] relative min-h-[auto] min-w-[auto] w-full"
+export const ProjectCarousel = ({ variant, projects }: ProjectCarouselProps) => {
+  const [activeIndex, setActiveIndex] = useState(0);
+  const [savedProjects, setSavedProjects] = useState<string[]>([]);
+  const isFeatured = variant === "featured";
+  const itemsPerSlide = isFeatured ? 2 : 1;
+  const slideIncrement = isFeatured ? 1 : 1; // Overlap by 1 item for featured
+  const totalSlides = isFeatured 
+    ? projects.length - itemsPerSlide + 1 
+    : Math.ceil(projects.length / itemsPerSlide);
+
+  if (!projects.length) {
+    return null;
+  }
+
+  const goToPrevious = () => {
+    setActiveIndex((current) => (current === 0 ? totalSlides - 1 : current - 1));
+  };
+
+  const goToNext = () => {
+    setActiveIndex((current) => (current === totalSlides - 1 ? 0 : current + 1));
+  };
+
+  const toggleSaved = (title: string) => {
+    setSavedProjects((current) =>
+      current.includes(title)
+        ? current.filter((item) => item !== title)
+        : [...current, title],
+    );
+  };
+
+  const shareProject = async (projectTitle: string) => {
+    const url = `${window.location.origin}/projects/${slugify(projectTitle)}`;
+
+    if (navigator.share) {
+      await navigator.share({ title: projectTitle, url });
+      return;
+    }
+
+    await navigator.clipboard?.writeText(url);
+    window.alert("Project link copied");
+  };
+
+  // Render single project card for default variant
+  const renderDefaultCard = (project: any) => {
+    const isSaved = savedProjects.includes(project.title);
+    return (
+      <article
+        key={project.title}
+        className="group grid w-full shrink-0 overflow-hidden rounded-lg border border-slate-200 bg-white shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-xl md:grid-cols-[1fr_1fr]"
       >
-        <div className="box-border caret-transparent outline-[3px] overflow-hidden">
-          <div className="box-border caret-transparent outline-[3px] flex w-full -ml-1">
-            {props.projects.map((project) => (
-              <div
-                role="group"
-                className="box-border caret-transparent basis-[85%] shrink-0 min-h-[auto] outline-[3px] pb-2 px-2 md:basis-6/12"
-                key={project.title}
-              >
-                <div className="text-slate-950 bg-white shadow-[rgba(0,0,0,0)_0px_0px_0px_0px,rgba(0,0,0,0)_0px_0px_0px_0px,rgba(0,0,0,0.05)_0px_1px_2px_0px] box-border caret-transparent flex flex-col outline-[3px] w-full border border-gray-200 overflow-hidden rounded-lg border-solid">
-                  <div className="relative box-border caret-transparent h-[150px] min-h-[auto] min-w-[auto] outline-[3px] w-full md:h-[250px]">
-                    <div className="relative box-border caret-transparent h-[150px] outline-[3px] w-full overflow-hidden md:h-[250px]">
-                      <img
-                        src={project.imageUrl}
-                        alt={project.imageAlt}
-                        className="aspect-[auto_600_/_400] box-border caret-transparent blur-0 h-full max-w-full object-cover outline-[3px] w-full"
-                      />
-                      <div className="absolute box-border caret-transparent outline-[3px] inset-0"></div>
-                      <div className="absolute text-green-800 text-xs font-semibold items-center bg-red-100 box-border caret-transparent gap-x-2 flex leading-4 outline-[3px] gap-y-2 z-30 ml-2 px-3 py-1 rounded-bl rounded-br rounded-tl rounded-tr left-2 top-2">
-                        <img
-                          src="https://c.animaapp.com/mqj9un6oir889A/assets/icon-11.svg"
-                          alt="Icon"
-                          className="box-border caret-transparent h-3.5 outline-[3px] w-3.5"
-                        />
-                        {project.badgeText}
-                      </div>
-                      <div className="absolute box-border caret-transparent gap-x-1 flex outline-[3px] gap-y-1 z-30 right-2 top-2 md:gap-x-2 md:gap-y-2">
-                        <button className="text-sm font-medium items-center backdrop-blur-md bg-white/90 caret-transparent flex h-7 justify-center leading-5 min-h-[auto] min-w-[auto] outline-[3px] text-center text-nowrap w-7 border border-slate-200 p-0 rounded-md md:h-8 md:w-8">
-                          <img
-                            src="https://c.animaapp.com/mqj9un6oir889A/assets/icon-12.svg"
-                            alt="Icon"
-                            className="box-border caret-transparent h-3.5 outline-[3px] text-nowrap w-3.5"
-                          />
-                        </button>
-                        <button className="text-sm font-medium items-center backdrop-blur-md bg-white/90 caret-transparent flex h-7 justify-center leading-5 min-h-[auto] min-w-[auto] outline-[3px] text-center text-nowrap w-7 border border-slate-200 p-0 rounded-md md:h-8 md:w-8">
-                          <img
-                            src="https://c.animaapp.com/mqj9un6oir889A/assets/icon-13.svg"
-                            alt="Icon"
-                            className="box-border caret-transparent h-3 outline-[3px] text-nowrap w-3"
-                          />
-                        </button>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="bg-[linear-gradient(90deg,rgb(226,200,115)_-40.09%,rgb(255,251,242))] box-border caret-transparent flex basis-[0%] flex-col grow justify-between min-h-[auto] min-w-[auto] outline-[3px] w-full pt-3 pb-4 px-4 md:pt-4">
-                    <div className="box-border caret-transparent hidden flex-col min-h-0 min-w-0 outline-[3px] w-full mb-2 md:block md:min-h-[auto] md:min-w-[auto]">
-                      <div className="[align-items:normal] box-border caret-transparent gap-x-2 flex flex-col justify-normal outline-[3px] gap-y-2 w-full md:items-start md:flex-row md:justify-between">
-                        <div className="box-border caret-transparent basis-[0%] grow min-h-0 min-w-0 outline-[3px] md:min-h-[auto] md:min-w-[auto]">
-                          <h3 className="text-base font-semibold box-border caret-transparent tracking-[-0.4px] leading-6 outline-[3px] text-ellipsis text-nowrap overflow-hidden font-poppins md:text-xl md:tracking-[-0.5px] md:leading-7 md:text-wrap">
-                            {project.title}
-                          </h3>
-                          <p className="text-gray-600 text-xs box-border caret-transparent leading-4 outline-[3px] mb-0.5 md:text-sm md:leading-5">
-                            {project.location}
-                          </p>
-                        </div>
-                        <div className="items-start box-border caret-transparent flex flex-col min-h-0 min-w-0 outline-[3px] md:items-end md:min-h-[auto] md:min-w-[auto]">
-                          <p className="text-yellow-800 text-base font-semibold box-border caret-transparent leading-6 min-h-0 min-w-0 outline-[3px] mb-1 md:text-xl md:leading-7 md:min-h-[auto] md:min-w-[auto]">
-                            {project.price}
-                          </p>
-                        </div>
-                      </div>
-                    </div>
-                     <div className="box-border caret-transparent block flex-col min-h-[auto] min-w-[auto] outline-[3px] md:hidden md:min-h-0 md:min-w-0">
-                      <div className="box-border caret-transparent flex flex-col justify-between outline-[3px] w-full">
-                        <h3 className="text-base font-semibold box-border caret-transparent tracking-[-0.4px] leading-6 min-h-[auto] min-w-[auto] outline-[3px] text-ellipsis text-nowrap overflow-hidden mb-1 font-poppins md:text-lg md:tracking-[-0.45px] md:leading-7 md:min-h-0 md:min-w-0 md:text-wrap">
-                          {project.title}
-                        </h3>
-                        <div className="absolute box-border caret-transparent gap-x-1 hidden outline-[3px] gap-y-1 z-10 right-4 top-2 md:gap-x-2 md:flex md:gap-y-2">
-                          <button
-                            type="button"
-                            aria-label="Save this job"
-                            className="text-sm font-medium items-center bg-white caret-transparent inline-flex h-7 justify-center leading-5 outline-[3px] text-center text-nowrap w-7 border border-slate-200 p-0 rounded-md md:flex md:h-10 md:w-10"
-                          >
-                            <img
-                              src="https://c.animaapp.com/mqj9un6oir889A/assets/icon-12.svg"
-                              alt="Icon"
-                              className="box-border caret-transparent h-3.5 outline-[3px] text-nowrap w-3.5"
-                            />
-                          </button>
-                          <button
-                            type="button"
-                            aria-label="Copy link to this job"
-                            className="text-sm font-medium items-center bg-white caret-transparent flex h-7 justify-center leading-5 outline-[3px] text-center text-nowrap w-7 border border-slate-200 p-0 rounded-md md:h-10 md:w-10"
-                          >
-                            <img
-                              src="https://c.animaapp.com/mqj9un6oir889A/assets/icon-13.svg"
-                              alt="Icon"
-                              className="box-border caret-transparent h-3 outline-[3px] text-nowrap w-3"
-                            />
-                          </button>
-                        </div>
-                        <p className="text-gray-600 text-xs box-border caret-transparent leading-4 min-h-[auto] min-w-[auto] outline-[3px] text-ellipsis text-nowrap overflow-hidden mb-1 md:text-sm md:leading-5 md:min-h-0 md:min-w-0 md:text-wrap"></p>
-                        <p className="text-green-700 text-base font-semibold box-border caret-transparent leading-6 min-h-[auto] min-w-[auto] outline-[3px] mb-1 md:text-xl md:leading-7 md:min-h-0 md:min-w-0">
-                          {project.desktopPrice}
-                        </p>
-                        <p className="text-gray-500 text-[10px] italic box-border caret-transparent hidden leading-[15px] outline-[3px] mb-3 md:text-xs md:block md:leading-4">
-                          {project.averagePrice}
-                        </p>
-                        <div className="text-gray-700 text-xs items-start backdrop-blur-sm bg-white/60 box-border caret-transparent gap-x-10 flex leading-4 min-h-[auto] min-w-[auto] outline-[3px] gap-y-10 border mt-2 p-2 rounded-lg border-solid md:text-sm md:hidden md:leading-5 md:min-h-0 md:min-w-0">
-                          <div className="text-xs items-center box-border caret-transparent gap-x-1 flex leading-4 min-h-[auto] min-w-[auto] outline-[3px] gap-y-1 md:text-sm md:leading-5 md:min-h-0 md:min-w-0">
-                            <img
-                              src="https://c.animaapp.com/mqj9un6oir889A/assets/icon-14.svg"
-                              alt="Icon"
-                              className="text-gray-500 text-xs box-border caret-transparent h-3.5 leading-4 outline-[3px] w-3.5 md:text-sm md:leading-5"
-                            />
-                            <div className="text-xs box-border caret-transparent leading-4 min-h-[auto] min-w-[auto] outline-[3px] md:text-sm md:leading-5 md:min-h-0 md:min-w-0">
-                              <p className="text-black text-xs font-semibold box-border caret-transparent leading-4 outline-[3px] md:text-sm md:leading-5">
-                                Size starts at
-                              </p>
-                              <p className="text-xs items-center box-border caret-transparent gap-x-2 flex leading-4 outline-[3px] gap-y-2 md:text-sm md:leading-5">
-                                {project.sizeStartsAt}
-                                <select className="appearance-none text-indigo-600 text-sm font-medium bg-transparent caret-transparent block leading-5 min-h-[auto] min-w-[auto] outline-transparent outline-offset-2 outline outline-2 pl-1 pr-4 md:min-h-0 md:min-w-0">
-                                  <option
-                                    value="sqft"
-                                    className="font-normal items-center box-border caret-transparent gap-x-[7px] min-h-6 min-w-6 outline-[3px] gap-y-[7px]"
-                                  >
-                                    sq.ft
-                                  </option>
-                                  <option
-                                    value="sqyd"
-                                    className="font-normal items-center box-border caret-transparent gap-x-[7px] min-h-6 min-w-6 outline-[3px] gap-y-[7px]"
-                                  >
-                                    sq.yd
-                                  </option>
-                                  <option
-                                    value="sqm"
-                                    className="font-normal items-center box-border caret-transparent gap-x-[7px] min-h-6 min-w-6 outline-[3px] gap-y-[7px]"
-                                  >
-                                    sq.m
-                                  </option>
-                                </select>
-                                <span className="text-indigo-600 text-xs box-border caret-transparent block leading-4 min-h-[auto] min-w-[auto] outline-[3px] pointer-events-none -ml-4 md:min-h-0 md:min-w-0">
-                                  ▼
-                                </span>
-                              </p>
-                            </div>
-                          </div>
-                          <div className="text-xs items-center box-border caret-transparent gap-x-1 flex leading-4 min-h-[auto] min-w-[auto] outline-[3px] gap-y-1 md:text-sm md:leading-5 md:min-h-0 md:min-w-0">
-                            <img
-                              src="https://c.animaapp.com/mqj9un6oir889A/assets/icon-15.svg"
-                              alt="Icon"
-                              className="text-gray-500 text-xs box-border caret-transparent h-3.5 leading-4 outline-[3px] w-3.5 md:text-sm md:leading-5"
-                            />
-                            <div className="text-xs box-border caret-transparent leading-4 min-h-[auto] min-w-[auto] outline-[3px] md:text-sm md:leading-5 md:min-h-0 md:min-w-0">
-                              <p className="text-black text-xs font-medium box-border caret-transparent leading-4 outline-[3px] md:text-sm md:leading-5">
-                                Road width
-                              </p>
-                              <p className="text-xs font-medium box-border caret-transparent leading-4 outline-[3px] md:text-sm md:leading-5">
-                                {project.roadWidth}
-                              </p>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div className="text-sm backdrop-blur-sm bg-white/80 box-border caret-transparent gap-x-4 hidden justify-between leading-5 min-h-0 min-w-0 outline-[3px] gap-y-4 w-full border mt-2 px-6 py-3 rounded-lg border-solid md:flex md:min-h-[auto] md:min-w-[auto]">
-                      <div className="items-center box-border caret-transparent gap-x-2 flex min-h-0 min-w-0 outline-[3px] gap-y-2 md:min-h-[auto] md:min-w-[auto]">
-                        <img
-                          src="https://c.animaapp.com/mqj9un6oir889A/assets/icon-16.svg"
-                          alt="Icon"
-                          className="text-gray-500 box-border caret-transparent h-[18px] outline-[3px] w-[18px]"
-                        />
-                        <div className="box-border caret-transparent min-h-0 min-w-0 outline-[3px] md:min-h-[auto] md:min-w-[auto]">
-                          <p className="text-black font-semibold box-border caret-transparent outline-[3px]">
-                            Size starts at
-                          </p>
-                          <p className="items-center box-border caret-transparent gap-x-2 flex outline-[3px] gap-y-2">
-                            {project.sizeStartsAt}
-                            <select className="appearance-none text-indigo-600 font-medium bg-transparent caret-transparent block min-h-0 min-w-0 outline-transparent outline-offset-2 outline outline-2 pl-1 pr-4 md:min-h-[auto] md:min-w-[auto]">
-                              <option
-                                value="sqft"
-                                className="font-normal items-center box-border caret-transparent gap-x-[7px] min-h-6 min-w-6 outline-[3px] gap-y-[7px]"
-                              >
-                                sq.ft
-                              </option>
-                              <option
-                                value="sqyd"
-                                className="font-normal items-center box-border caret-transparent gap-x-[7px] min-h-6 min-w-6 outline-[3px] gap-y-[7px]"
-                              >
-                                sq.yd
-                              </option>
-                              <option
-                                value="sqm"
-                                className="font-normal items-center box-border caret-transparent gap-x-[7px] min-h-6 min-w-6 outline-[3px] gap-y-[7px]"
-                              >
-                                sq.m
-                              </option>
-                            </select>
-                            <span className="text-indigo-600 text-xs box-border caret-transparent block leading-4 min-h-0 min-w-0 outline-[3px] pointer-events-none -ml-4 md:min-h-[auto] md:min-w-[auto]">
-                              ▼
-                            </span>
-                          </p>
-                        </div>
-                      </div>
-                      <div className="items-center box-border caret-transparent gap-x-2 flex min-h-0 min-w-0 outline-[3px] gap-y-2 border-gray-300 pl-4 border-l border-solid md:min-h-[auto] md:min-w-[auto]">
-                        <img
-                          src="https://c.animaapp.com/mqj9un6oir889A/assets/icon-17.svg"
-                          alt="Icon"
-                          className="text-gray-500 box-border caret-transparent h-[18px] outline-[3px] w-[18px]"
-                        />
-                        <div className="box-border caret-transparent min-h-0 min-w-0 outline-[3px] md:min-h-[auto] md:min-w-[auto]">
-                          <p className="text-black font-semibold box-border caret-transparent outline-[3px]">
-                            Road Width
-                          </p>
-                          <p className="box-border caret-transparent outline-[3px]">
-                            {project.roadWidth}
-                          </p>
-                        </div>
-                      </div>
-                      <div className="items-center box-border caret-transparent gap-x-2 flex min-h-0 min-w-0 outline-[3px] gap-y-2 border-gray-300 pl-4 border-l border-solid md:min-h-[auto] md:min-w-[auto]">
-                        <img
-                          src="https://c.animaapp.com/mqj9un6oir889A/assets/icon-18.svg"
-                          alt="Icon"
-                          className="text-gray-500 box-border caret-transparent h-[18px] outline-[3px] w-[18px]"
-                        />
-                        <div className="box-border caret-transparent min-h-0 min-w-0 outline-[3px] md:min-h-[auto] md:min-w-[auto]">
-                          <p className="text-black font-semibold box-border caret-transparent outline-[3px]">
-                            Approved by
-                          </p>
-                          <p className="box-border caret-transparent outline-[3px]">
-                            {project.approvedBy}
-                          </p>
-                        </div>
-                      </div>
-                    </div>
-                    <div className="items-center box-border caret-transparent gap-x-3 flex flex-wrap justify-between min-h-[auto] min-w-[auto] outline-[3px] gap-y-3 w-full mt-4 pt-4 border-t border-solid">
-                      <div className="items-center box-border caret-transparent gap-x-3 flex basis-[0%] grow min-h-[auto] outline-[3px] gap-y-3">
-                        {project.builderLogoUrl ? (
-                          <div className="relative bg-black box-border caret-transparent shrink-0 min-h-[auto] min-w-[auto] outline-[3px] p-[1.5px] rounded-full">
-                            <img
-                              src={project.builderLogoUrl}
-                              alt={project.builderLogoAlt}
-                              className="aspect-[auto_36_/_36] bg-white shadow-[rgba(0,0,0,0)_0px_0px_0px_0px,rgba(0,0,0,0)_0px_0px_0px_0px,rgba(0,0,0,0.05)_0px_1px_2px_0px] box-border caret-transparent h-9 max-w-full object-contain outline-[3px] w-9 p-1 rounded-full"
-                            />
-                          </div>
-                        ) : (
-                          <div className="text-white text-sm font-semibold items-center bg-black shadow-[rgba(0,0,0,0)_0px_0px_0px_0px,rgba(0,0,0,0)_0px_0px_0px_0px,rgba(0,0,0,0.05)_0px_1px_2px_0px] box-border caret-transparent flex shrink-0 h-9 justify-center leading-5 min-h-[auto] min-w-[auto] outline-[3px] uppercase w-9 rounded-full">
-                            {project.builderInitial}
-                          </div>
-                        )}
-                        <div className="box-border caret-transparent basis-[0%] grow min-h-[auto] outline-[3px] text-left">
-                          <p className="text-gray-900 text-[15px] font-semibold box-border caret-transparent leading-[18.75px] outline-[3px] text-ellipsis text-nowrap overflow-hidden">
-                            {project.builderName}
-                          </p>
-                          <p className="text-gray-500 text-xs font-medium box-border caret-transparent tracking-[0.3px] leading-4 outline-[3px] text-ellipsis text-nowrap overflow-hidden mt-1">
-                            {project.builderType}
-                          </p>
-                        </div>
-                      </div>
-                      <div className="items-center box-border caret-transparent gap-x-2 flex shrink-0 min-h-[auto] min-w-[auto] outline-[3px] gap-y-2">
-                        <button
-                          type="button"
-                          className="text-white font-medium items-center bg-slate-900 bg-[linear-gradient(to_right,rgb(99,102,241),rgb(6,182,212))] caret-transparent gap-x-4 flex h-10 justify-center min-h-[auto] min-w-[auto] outline-[3px] gap-y-4 text-center text-nowrap w-full px-6 py-2 rounded-bl rounded-br rounded-tl rounded-tr"
-                        >
-                          <span className="text-sm box-border caret-transparent flex leading-5 min-h-[auto] min-w-[auto] outline-[3px] text-nowrap md:hidden md:min-h-0 md:min-w-0">
-                            Contact
-                          </span>
-                          <div className="items-center box-border caret-transparent gap-x-2 hidden min-h-0 min-w-0 outline-[3px] gap-y-2 text-nowrap md:flex md:min-h-[auto] md:min-w-[auto]">
-                            <img
-                              src="https://c.animaapp.com/mqj9un6oir889A/assets/icon-21.svg"
-                              alt="Icon"
-                              className="text-lg box-border caret-transparent shrink-0 h-[18px] leading-7 outline-[3px] text-nowrap w-[18px]"
-                            />
-                            <span className="box-border caret-transparent inline min-h-0 min-w-0 outline-[3px] text-nowrap md:block md:min-h-[auto] md:min-w-[auto]">
-                              Contact
-                            </span>
-                          </div>
-                        </button>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            ))}
+        <div className="relative min-h-[260px] overflow-hidden bg-slate-100 md:min-h-[410px]">
+          <Image
+            src={project.imageUrl}
+            alt={project.imageAlt}
+            width={1200}
+            height={800}
+            sizes="(max-width: 768px) 100vw, 50vw"
+            className="h-full w-full object-cover transition-transform duration-500 ease-out group-hover:scale-105"
+          />
+          <div className="absolute left-5 top-4 flex items-center gap-2 rounded-md bg-rose-50 px-4 py-2 text-sm font-bold text-emerald-800">
+            <CheckCircle2 className="h-4 w-4 fill-emerald-700 text-emerald-700" />
+            {project.badgeText}
           </div>
-          <div className="absolute box-border caret-transparent gap-x-2 hidden outline-[3px] gap-y-2 z-10 right-16 -top-14 md:flex">
-            <button className="absolute text-sm font-medium items-center bg-gray-200 caret-transparent flex h-8 justify-center leading-5 opacity-50 outline-[3px] pointer-events-none text-center text-nowrap transform-none w-8 border border-slate-200 p-2 rounded-full -left-12 top-2/4 md:translate-y-[-50.0%]">
-              <img
-                src="https://c.animaapp.com/mqj9un6oir889A/assets/icon-22.svg"
-                alt="Icon"
-                className="box-border caret-transparent h-4 outline-[3px] text-nowrap w-4"
-              />
+        </div>
+
+        <div className="relative flex flex-col justify-between bg-emerald-50 p-5 md:p-6">
+          <div className="absolute right-5 top-4 flex gap-3">
+            <button
+              type="button"
+              onClick={() => toggleSaved(project.title)}
+              aria-label={isSaved ? "Remove saved project" : "Save project"}
+              className="flex h-12 w-12 items-center justify-center rounded-lg border border-amber-400 bg-white text-slate-900 transition-all duration-300 hover:-translate-y-0.5 hover:bg-amber-50"
+            >
+              <Heart className={`h-5 w-5 ${isSaved ? "fill-rose-500 text-rose-500" : ""}`} />
             </button>
-            <button className="absolute text-sm font-medium items-center bg-gray-200 caret-transparent flex h-8 justify-center leading-5 outline-[3px] text-center text-nowrap transform-none w-8 border border-slate-200 p-2 rounded-full -right-12 top-2/4 md:translate-y-[-50.0%]">
-              <img
-                src="https://c.animaapp.com/mqj9un6oir889A/assets/icon-23.svg"
-                alt="Icon"
-                className="box-border caret-transparent h-4 outline-[3px] text-nowrap w-4"
-              />
+            <button
+              type="button"
+              onClick={() => shareProject(project.title)}
+              aria-label="Share project"
+              className="flex h-12 w-12 items-center justify-center rounded-lg border border-amber-400 bg-white text-slate-900 transition-all duration-300 hover:-translate-y-0.5 hover:bg-amber-50"
+            >
+              <Link2 className="h-5 w-5" />
+            </button>
+          </div>
+
+          <div className="pr-28">
+            <h3 className="font-poppins text-2xl font-bold leading-tight text-slate-950">
+              {project.title}
+            </h3>
+            <p className="mt-2 text-base text-slate-600">{project.location}</p>
+            <p className="mt-3 text-2xl font-bold text-emerald-700">
+              {project.price}
+            </p>
+            <p className="mt-2 text-sm italic text-slate-500">{project.averagePrice}</p>
+          </div>
+
+          <div className="mt-6 grid gap-3 rounded-lg border border-amber-400 bg-white/80 p-4 md:grid-cols-3">
+            <div>
+              <p className="font-semibold text-slate-950">Size starts at</p>
+              <p className="mt-1 text-slate-700">{project.sizeStartsAt} sq. yd</p>
+            </div>
+            <div className="md:border-l md:border-slate-300 md:pl-6">
+              <p className="font-semibold text-slate-950">Road Width</p>
+              <p className="mt-1 text-slate-700">{project.roadWidth}</p>
+            </div>
+            <div className="md:border-l md:border-slate-300 md:pl-6">
+              <p className="font-semibold text-slate-950">Approved by</p>
+              <p className="mt-1 text-slate-700">{project.approvedBy}</p>
+            </div>
+          </div>
+
+          <div className="mt-5 flex flex-wrap items-center justify-between gap-4 border-t border-emerald-100 pt-5">
+            <div className="flex items-center gap-3">
+              {project.builderLogoUrl ? (
+                <Image
+                  src={project.builderLogoUrl}
+                  alt={project.builderLogoAlt}
+                  width={44}
+                  height={44}
+                  className="h-11 w-11 rounded-full bg-white object-contain p-1"
+                />
+              ) : (
+                <span className="flex h-11 w-11 items-center justify-center rounded-full bg-emerald-700 font-bold text-white">
+                  {project.builderInitial}
+                </span>
+              )}
+              <div>
+                <p className="font-semibold text-slate-950">{project.builderName}</p>
+                <p className="text-sm text-slate-500">{project.builderType}</p>
+              </div>
+            </div>
+            <a
+              href="tel:+918829901400"
+              className="inline-flex items-center gap-2 rounded-lg bg-slate-950 px-5 py-3 text-sm font-semibold text-white transition-all duration-300 hover:-translate-y-0.5 hover:bg-emerald-800"
+            >
+              <Phone className="h-4 w-4" />
+              Contact
+            </a>
+          </div>
+        </div>
+      </article>
+    );
+  };
+
+  // Render featured project card (compact, two per slide)
+  const renderFeaturedCard = (project: any) => {
+    const isSaved = savedProjects.includes(project.title);
+    return (
+      <article
+        key={project.title}
+        className="group shrink-0 w-[calc(50%-8px)] overflow-hidden rounded-lg border border-gray-200 bg-white shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-lg"
+      >
+        {/* Image Section */}
+        <div className="relative h-48 overflow-hidden bg-gray-100 sm:h-56">
+          <Image
+            src={project.imageUrl}
+            alt={project.imageAlt}
+            width={600}
+            height={400}
+            sizes="(max-width: 768px) 100vw, 50vw"
+            className="h-full w-full object-cover transition-transform duration-500 ease-out group-hover:scale-105"
+          />
+          
+          {/* Badge */}
+          <div className="absolute left-3 top-3 flex items-center gap-1 rounded-md bg-white/95 px-3 py-1 text-xs font-bold text-green-700 backdrop-blur-sm">
+            <CheckCircle2 className="h-3 w-3 fill-green-700" />
+            {project.badgeText}
+          </div>
+
+          {/* Actions */}
+          <div className="absolute right-3 top-3 flex gap-2">
+            <button
+              type="button"
+              onClick={() => toggleSaved(project.title)}
+              aria-label={isSaved ? "Remove saved project" : "Save project"}
+              className="flex h-8 w-8 items-center justify-center rounded-md bg-white/95 text-gray-700 transition-all duration-200 hover:-translate-y-0.5 hover:bg-white hover:text-rose-500"
+            >
+              <Heart className={`h-4 w-4 ${isSaved ? "fill-rose-500 text-rose-500" : ""}`} />
+            </button>
+            <button
+              type="button"
+              onClick={() => shareProject(project.title)}
+              aria-label="Share project"
+              className="flex h-8 w-8 items-center justify-center rounded-md bg-white/95 text-gray-700 transition-all duration-200 hover:-translate-y-0.5 hover:bg-white"
+            >
+              <Share2 className="h-4 w-4" />
             </button>
           </div>
         </div>
-      </div>
-    </div>
-  ) : (
-    <div
-      role="region"
-      className="relative box-border caret-transparent outline-[3px] w-full"
-    >
-      <div className="box-border caret-transparent outline-[3px] overflow-hidden">
-        <div className="box-border caret-transparent outline-[3px] flex -ml-2">
-          {props.projects.map((project) => (
-            <div
-              role="group"
-              className="box-border caret-transparent basis-[92%] shrink-0 min-h-[auto] outline-[3px] pl-2 md:basis-full"
-              key={project.title}
-            >
-              <div className="box-border caret-transparent outline-[3px]">
-                <div className="relative text-slate-950 bg-white shadow-[rgba(0,0,0,0)_0px_0px_0px_0px,rgba(0,0,0,0)_0px_0px_0px_0px,rgba(0,0,0,0.05)_0px_1px_2px_0px] box-border caret-transparent flex flex-col max-h-full min-h-0 outline-[3px] w-full border border-gray-200 overflow-hidden mb-6 rounded-lg border-solid md:flex-row md:max-h-[400px] md:min-h-[400px]">
-                  <div className="relative aspect-video box-border caret-transparent min-h-[auto] min-w-[auto] outline-[3px] w-full overflow-hidden md:w-6/12">
-                    <div className="relative box-border caret-transparent h-full outline-[3px] w-full overflow-hidden">
-                      <img
-                        src={project.imageUrl}
-                        alt={project.imageAlt}
-                        className="aspect-video box-border caret-transparent blur-0 h-full max-w-full object-cover outline-[3px] w-full"
-                      />
-                      <div className="absolute box-border caret-transparent outline-[3px] inset-0"></div>
-                    </div>
-                    <div className="absolute text-green-800 text-xs font-semibold items-center bg-red-100 box-border caret-transparent gap-x-2 flex leading-4 outline-[3px] gap-y-2 ml-2 px-3 py-1 rounded-bl rounded-br rounded-tl rounded-tr left-2 top-2">
-                      <img
-                        src="https://c.animaapp.com/mqj9un6oir889A/assets/icon-11.svg"
-                        alt="Icon"
-                        className="box-border caret-transparent h-3.5 outline-[3px] w-3.5"
-                      />
-                      {project.badgeText}
-                    </div>
-                    <div className="absolute box-border caret-transparent gap-x-2 flex outline-[3px] gap-y-2 z-10 right-2 top-2 md:hidden">
-                      <button className="text-sm font-medium items-center bg-white caret-transparent flex h-7 justify-center leading-5 min-h-[auto] min-w-[auto] outline-[3px] text-center text-nowrap w-7 border border-yellow-400 p-1 rounded-md md:inline-flex md:min-h-0 md:min-w-0">
-                        <img
-                          src="https://c.animaapp.com/mqj9un6oir889A/assets/icon-12.svg"
-                          alt="Icon"
-                          className="box-border caret-transparent h-3.5 outline-[3px] text-nowrap w-3.5"
-                        />
-                      </button>
-                      <button className="text-sm font-medium items-center bg-white caret-transparent flex h-7 justify-center leading-5 min-h-[auto] min-w-[auto] outline-[3px] text-center text-nowrap w-7 border border-yellow-400 p-1 rounded-md md:min-h-0 md:min-w-0">
-                        <img
-                          src="https://c.animaapp.com/mqj9un6oir889A/assets/icon-13.svg"
-                          alt="Icon"
-                          className="box-border caret-transparent h-3 outline-[3px] text-nowrap w-3"
-                        />
-                      </button>
-                    </div>
-                  </div>
-                  <div className="relative bg-[linear-gradient(to_left_bottom,rgb(167,243,208),rgb(255,255,255),rgb(209,250,229))] box-border caret-transparent flex basis-[0%] flex-col grow justify-start min-h-[auto] min-w-[auto] outline-[3px] pt-3 pb-4 px-4 md:pt-4">
-                    <div className="box-border caret-transparent flex flex-col min-h-[auto] min-w-[auto] outline-[3px]">
-                      <div className="box-border caret-transparent flex flex-col justify-between min-h-[auto] min-w-[auto] outline-[3px] w-full">
-                        <h3 className="text-base font-semibold box-border caret-transparent tracking-[-0.4px] leading-6 min-h-[auto] min-w-[auto] outline-[3px] text-ellipsis text-nowrap overflow-hidden font-poppins md:text-xl md:tracking-[-0.5px] md:leading-7 md:text-wrap">
-                          {project.title}
-                        </h3>
-                        <div className="absolute box-border caret-transparent gap-x-1 hidden outline-[3px] gap-y-1 z-10 right-4 top-2 md:gap-x-2 md:flex md:gap-y-2">
-                          <button
-                            type="button"
-                            aria-label="Save this job"
-                            className="text-sm font-medium items-center bg-white caret-transparent inline-flex h-7 justify-center leading-5 min-h-0 min-w-0 outline-[3px] text-center text-nowrap w-7 border border-yellow-400 p-0 rounded-md md:flex md:h-10 md:min-h-[auto] md:min-w-[auto] md:w-10"
-                          >
-                            <img
-                              src="https://c.animaapp.com/mqj9un6oir889A/assets/icon-12.svg"
-                              alt="Icon"
-                              className="box-border caret-transparent h-3.5 outline-[3px] text-nowrap w-3.5"
-                            />
-                          </button>
-                          <button
-                            type="button"
-                            aria-label="Copy link to this job"
-                            className="text-sm font-medium items-center bg-white caret-transparent flex h-7 justify-center leading-5 min-h-0 min-w-0 outline-[3px] text-center text-nowrap w-7 border border-yellow-400 p-0 rounded-md md:h-10 md:min-h-[auto] md:min-w-[auto] md:w-10"
-                          >
-                            <img
-                              src="https://c.animaapp.com/mqj9un6oir889A/assets/icon-13.svg"
-                              alt="Icon"
-                              className="box-border caret-transparent h-3 outline-[3px] text-nowrap w-3"
-                            />
-                          </button>
-                        </div>
-                        <p className="text-gray-600 text-xs box-border caret-transparent leading-4 min-h-[auto] min-w-[auto] outline-[3px] mb-0.5 md:text-sm md:leading-5">
-                          {project.location}
-                        </p>
-                        <p className="text-green-700 text-base font-semibold box-border caret-transparent leading-6 min-h-[auto] min-w-[auto] outline-[3px] mb-1 md:text-xl md:leading-7">
-                          {project.price}
-                        </p>
-                        <p className="text-gray-500 text-[10px] italic box-border caret-transparent hidden leading-[15px] min-h-0 min-w-0 outline-[3px] mb-3 md:text-xs md:block md:leading-4 md:min-h-[auto] md:min-w-[auto]">
-                          {project.averagePrice}
-                        </p>
-                        <div className="text-gray-700 text-xs items-start bg-gray-100 box-border caret-transparent gap-x-10 flex leading-4 min-h-[auto] min-w-[auto] outline-[3px] gap-y-10 border border-yellow-400 mt-2 px-3 py-2 rounded-lg border-solid md:text-sm md:hidden md:leading-5 md:min-h-0 md:min-w-0">
-                          <div className="text-xs items-center box-border caret-transparent gap-x-1 flex leading-4 min-h-[auto] min-w-[auto] outline-[3px] gap-y-1 md:text-sm md:leading-5 md:min-h-0 md:min-w-0">
-                            <img
-                              src="https://c.animaapp.com/mqj9un6oir889A/assets/icon-14.svg"
-                              alt="Icon"
-                              className="text-gray-500 text-xs box-border caret-transparent h-3.5 leading-4 outline-[3px] w-3.5 md:text-sm md:leading-5"
-                            />
-                            <div className="text-xs box-border caret-transparent leading-4 min-h-[auto] min-w-[auto] outline-[3px] md:text-sm md:leading-5 md:min-h-0 md:min-w-0">
-                              <p className="text-gray-900 text-xs font-semibold box-border caret-transparent leading-4 outline-[3px] md:text-sm md:leading-5">
-                                Size starts at
-                              </p>
-                              <p className="text-xs items-center box-border caret-transparent gap-x-2 flex leading-4 outline-[3px] gap-y-2 md:text-sm md:leading-5">
-                                {project.sizeStartsAt}
-                                <select className="appearance-none text-indigo-600 text-sm font-medium bg-transparent caret-transparent block leading-5 min-h-[auto] min-w-[auto] outline-transparent outline-offset-2 outline outline-2 pl-1 pr-4 md:min-h-0 md:min-w-0">
-                                  <option
-                                    value="sqft"
-                                    className="font-normal items-center box-border caret-transparent gap-x-[7px] min-h-6 min-w-6 outline-[3px] gap-y-[7px]"
-                                  >
-                                    sq.ft
-                                  </option>
-                                  <option
-                                    value="sqyd"
-                                    className="font-normal items-center box-border caret-transparent gap-x-[7px] min-h-6 min-w-6 outline-[3px] gap-y-[7px]"
-                                  >
-                                    sq.yd
-                                  </option>
-                                  <option
-                                    value="sqm"
-                                    className="font-normal items-center box-border caret-transparent gap-x-[7px] min-h-6 min-w-6 outline-[3px] gap-y-[7px]"
-                                  >
-                                    sq.m
-                                  </option>
-                                </select>
-                                <span className="text-indigo-600 text-xs box-border caret-transparent block leading-4 min-h-[auto] min-w-[auto] outline-[3px] pointer-events-none -ml-4 md:min-h-0 md:min-w-0">
-                                  ▼
-                                </span>
-                              </p>
-                            </div>
-                          </div>
-                          <div className="text-xs items-center box-border caret-transparent gap-x-1 flex leading-4 min-h-[auto] min-w-[auto] outline-[3px] gap-y-1 md:text-sm md:leading-5 md:min-h-0 md:min-w-0">
-                            <img
-                              src="https://c.animaapp.com/mqj9un6oir889A/assets/icon-15.svg"
-                              alt="Icon"
-                              className="text-gray-500 text-xs box-border caret-transparent h-3.5 leading-4 outline-[3px] w-3.5 md:text-sm md:leading-5"
-                            />
-                            <div className="text-xs box-border caret-transparent leading-4 min-h-[auto] min-w-[auto] outline-[3px] md:text-sm md:leading-5 md:min-h-0 md:min-w-0">
-                              <p className="text-gray-900 text-xs font-medium box-border caret-transparent leading-4 outline-[3px] md:text-sm md:leading-5">
-                                Road width
-                              </p>
-                              <p className="text-xs font-medium box-border caret-transparent leading-4 outline-[3px] md:text-sm md:leading-5">
-                                {project.roadWidth}
-                              </p>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div className="text-sm backdrop-blur-sm bg-white/70 box-border caret-transparent gap-x-4 hidden justify-between leading-5 min-h-0 min-w-0 outline-[3px] gap-y-4 w-full border border-yellow-400 mt-2 px-6 py-3 rounded-lg border-solid md:flex md:min-h-[auto] md:min-w-[auto]">
-                      <div className="items-center box-border caret-transparent gap-x-2 flex min-h-0 min-w-0 outline-[3px] gap-y-2 md:min-h-[auto] md:min-w-[auto]">
-                        <img
-                          src="https://c.animaapp.com/mqj9un6oir889A/assets/icon-16.svg"
-                          alt="Icon"
-                          className="text-gray-500 box-border caret-transparent h-[18px] outline-[3px] w-[18px]"
-                        />
-                        <div className="box-border caret-transparent min-h-0 min-w-0 outline-[3px] md:min-h-[auto] md:min-w-[auto]">
-                          <p className="text-gray-900 font-semibold box-border caret-transparent outline-[3px]">
-                            Size starts at
-                          </p>
-                          <p className="items-center box-border caret-transparent gap-x-2 flex outline-[3px] gap-y-2">
-                            {project.sizeStartsAt}
-                            <select className="appearance-none text-indigo-600 font-medium bg-transparent caret-transparent block min-h-0 min-w-0 outline-transparent outline-offset-2 outline outline-2 pl-1 pr-4 md:min-h-[auto] md:min-w-[auto]">
-                              <option
-                                value="sqft"
-                                className="font-normal items-center box-border caret-transparent gap-x-[7px] min-h-6 min-w-6 outline-[3px] gap-y-[7px]"
-                              >
-                                sq.ft
-                              </option>
-                              <option
-                                value="sqyd"
-                                className="font-normal items-center box-border caret-transparent gap-x-[7px] min-h-6 min-w-6 outline-[3px] gap-y-[7px]"
-                              >
-                                sq.yd
-                              </option>
-                              <option
-                                value="sqm"
-                                className="font-normal items-center box-border caret-transparent gap-x-[7px] min-h-6 min-w-6 outline-[3px] gap-y-[7px]"
-                              >
-                                sq.m
-                              </option>
-                            </select>
-                            <span className="text-indigo-600 text-xs box-border caret-transparent block leading-4 min-h-0 min-w-0 outline-[3px] pointer-events-none -ml-4 md:min-h-[auto] md:min-w-[auto]">
-                              ▼
-                            </span>
-                          </p>
-                        </div>
-                      </div>
-                      <div className="items-center box-border caret-transparent gap-x-2 flex min-h-0 min-w-0 outline-[3px] gap-y-2 border-gray-300 pl-4 border-l border-solid md:min-h-[auto] md:min-w-[auto]">
-                        <img
-                          src="https://c.animaapp.com/mqj9un6oir889A/assets/icon-17.svg"
-                          alt="Icon"
-                          className="text-gray-500 box-border caret-transparent h-[18px] outline-[3px] w-[18px]"
-                        />
-                        <div className="box-border caret-transparent min-h-0 min-w-0 outline-[3px] md:min-h-[auto] md:min-w-[auto]">
-                          <p className="text-gray-900 font-semibold box-border caret-transparent outline-[3px]">
-                            Road Width
-                          </p>
-                          <p className="text-gray-800 box-border caret-transparent outline-[3px]">
-                            {project.roadWidth}
-                          </p>
-                        </div>
-                      </div>
-                      <div className="items-center box-border caret-transparent gap-x-2 flex min-h-0 min-w-0 outline-[3px] gap-y-2 border-gray-300 pl-4 border-l border-solid md:min-h-[auto] md:min-w-[auto]">
-                        <img
-                          src="https://c.animaapp.com/mqj9un6oir889A/assets/icon-18.svg"
-                          alt="Icon"
-                          className="text-gray-500 box-border caret-transparent h-[18px] outline-[3px] w-[18px]"
-                        />
-                        <div className="box-border caret-transparent min-h-0 min-w-0 outline-[3px] md:min-h-[auto] md:min-w-[auto]">
-                          <p className="text-gray-900 font-semibold box-border caret-transparent outline-[3px]">
-                            Approved by
-                          </p>
-                          <p className="text-gray-700 box-border caret-transparent outline-[3px]">
-                            {project.approvedBy}
-                          </p>
-                        </div>
-                      </div>
-                    </div>
-                    <div className="text-sm box-border caret-transparent hidden leading-5 min-h-0 min-w-0 outline-[3px] mt-1 md:block md:min-h-[auto] md:min-w-[auto]">
-                      <div className="box-border caret-transparent outline-[3px] mt-6">
-                        <div className="box-border caret-transparent outline-[3px]">
-                          <div className="items-center box-border caret-transparent gap-x-2 flex outline-[3px] gap-y-2 mb-4">
-                            <img
-                              src="https://c.animaapp.com/mqj9un6oir889A/assets/icon-19.svg"
-                              alt="Icon"
-                              className="text-green-500 box-border caret-transparent h-4 outline-[3px] w-4"
-                            />
-                            <span className="text-gray-900 font-semibold box-border caret-transparent block min-h-0 min-w-0 outline-[3px] md:min-h-[auto] md:min-w-[auto]">
-                              Amenities:
-                            </span>
-                            <div className="box-border caret-transparent gap-x-2 flex min-h-0 min-w-0 outline-[3px] gap-y-2 text-nowrap overflow-auto md:min-h-[auto] md:min-w-[auto]">
-                              {project.amenities.map((amenity) => (
-                                <span
-                                  className="text-gray-900 text-[13px] bg-green-100 box-border caret-transparent block min-h-0 min-w-0 outline-[3px] text-nowrap border border-yellow-400 px-3 py-1 rounded-md border-solid md:min-h-[auto] md:min-w-[auto]"
-                                  key={amenity}
-                                >
-                                  {amenity}
-                                </span>
-                              ))}
-                            </div>
-                          </div>
-                        </div>
-                        <div className="box-border caret-transparent outline-[3px] mt-2">
-                          <div className="items-center box-border caret-transparent gap-x-2 flex outline-[3px] gap-y-2 mb-2">
-                            <img
-                              src="https://c.animaapp.com/mqj9un6oir889A/assets/icon-20.svg"
-                              alt="Icon"
-                              className="text-blue-500 box-border caret-transparent h-4 outline-[3px] w-4"
-                            />
-                            <span className="text-gray-900 font-semibold box-border caret-transparent block min-h-0 min-w-0 outline-[3px] md:min-h-[auto] md:min-w-[auto]">
-                              Nearby:
-                            </span>
-                            <div className="box-border caret-transparent gap-x-2 flex min-h-0 min-w-0 outline-[3px] gap-y-2 text-nowrap overflow-auto md:min-h-[auto] md:min-w-[auto]">
-                              {project.nearby.map((nearbyItem) => (
-                                <span
-                                  className="text-gray-900 text-[13px] bg-blue-100 box-border caret-transparent block min-h-0 min-w-0 outline-[3px] text-nowrap px-3 py-1 rounded-md md:min-h-[auto] md:min-w-[auto]"
-                                  key={nearbyItem}
-                                >
-                                  {nearbyItem}
-                                </span>
-                              ))}
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div className="items-center box-border caret-transparent gap-x-3 flex flex-wrap justify-between min-h-[auto] min-w-[auto] outline-[3px] gap-y-3 w-full border-gray-200 mt-4 pt-4 border-t border-solid">
-                      <div className="items-center box-border caret-transparent gap-x-3 flex basis-[0%] grow min-h-[auto] outline-[3px] gap-y-3">
-                        <div className="relative bg-[linear-gradient(to_right_bottom,rgba(250,204,21,0.7),rgba(251,146,60,0.6))] box-border caret-transparent shrink-0 min-h-[auto] min-w-[auto] outline-[3px] p-px rounded-full">
-                          <img
-                            src={project.builderLogoUrl}
-                            alt={project.builderLogoAlt}
-                            className="aspect-[auto_36_/_36] bg-white shadow-[rgba(0,0,0,0)_0px_0px_0px_0px,rgba(0,0,0,0)_0px_0px_0px_0px,rgba(0,0,0,0.05)_0px_1px_2px_0px] box-border caret-transparent h-9 max-w-full object-contain outline-[3px] w-9 p-1 rounded-full"
-                          />
-                        </div>
-                        <div className="box-border caret-transparent basis-[0%] grow min-h-[auto] outline-[3px] text-left">
-                          <p className="text-gray-900 text-[15px] font-semibold box-border caret-transparent leading-[18.75px] outline-[3px] text-ellipsis text-nowrap overflow-hidden">
-                            {project.builderName}
-                          </p>
-                          <p className="text-gray-500 text-xs font-medium box-border caret-transparent tracking-[0.3px] leading-4 outline-[3px] text-ellipsis text-nowrap overflow-hidden mt-1">
-                            {project.builderType}
-                          </p>
-                        </div>
-                      </div>
-                      <div className="items-center box-border caret-transparent gap-x-2 flex shrink-0 min-h-[auto] min-w-[auto] outline-[3px] gap-y-2">
-                        <button
-                          type="button"
-                          className="text-white font-medium items-center bg-slate-900 bg-[linear-gradient(to_right,rgb(99,102,241),rgb(6,182,212))] caret-transparent gap-x-4 flex h-10 justify-center min-h-[auto] min-w-[auto] outline-[3px] gap-y-4 text-center text-nowrap w-full px-6 py-2 rounded-bl rounded-br rounded-tl rounded-tr"
-                        >
-                          <span className="text-sm box-border caret-transparent flex leading-5 min-h-[auto] min-w-[auto] outline-[3px] text-nowrap md:hidden md:min-h-0 md:min-w-0">
-                            Contact
-                          </span>
-                          <div className="items-center box-border caret-transparent gap-x-2 hidden min-h-0 min-w-0 outline-[3px] gap-y-2 text-nowrap md:flex md:min-h-[auto] md:min-w-[auto]">
-                            <img
-                              src="https://c.animaapp.com/mqj9un6oir889A/assets/icon-21.svg"
-                              alt="Icon"
-                              className="text-lg box-border caret-transparent shrink-0 h-[18px] leading-7 outline-[3px] text-nowrap w-[18px]"
-                            />
-                            <span className="box-border caret-transparent inline min-h-0 min-w-0 outline-[3px] text-nowrap md:block md:min-h-[auto] md:min-w-[auto]">
-                              Contact
-                            </span>
-                          </div>
-                        </button>
-                      </div>
-                    </div>
-                  </div>
-                </div>
+
+        {/* Content Section */}
+        <div className="flex flex-col bg-amber-50/80 p-4">
+          {/* Title, Location, Price */}
+          <div className="flex justify-between gap-2">
+            <div>
+              <h3 className="font-poppins text-lg font-bold text-gray-900 line-clamp-1">
+                {project.title}
+              </h3>
+              <p className="mt-1 text-xs text-gray-600 line-clamp-1">{project.location}</p>
+            </div>
+            <p className="text-right font-poppins text-lg font-bold text-yellow-700 whitespace-nowrap">
+              {project.price.replace("Rs. ", "₹ ")}
+            </p>
+          </div>
+
+          {/* Details Grid */}
+          <div className="mt-4 grid grid-cols-3 gap-2 rounded-lg border border-gray-300 bg-white p-3">
+            <div className="flex flex-col items-start gap-1 border-r border-gray-200 pr-2">
+              <div className="flex items-center gap-1 text-gray-700">
+                <Ruler className="h-3.5 w-3.5" />
+                <span className="text-xs font-medium">Size starts at</span>
+              </div>
+              <span className="text-sm text-gray-900">{project.sizeStartsAt} sqyd</span>
+            </div>
+            <div className="flex flex-col items-start gap-1 border-r border-gray-200 px-2">
+              <div className="flex items-center gap-1 text-gray-700">
+                <Building2 className="h-3.5 w-3.5" />
+                <span className="text-xs font-medium">Road Width</span>
+              </div>
+              <span className="text-sm text-gray-900">{project.roadWidth}</span>
+            </div>
+            <div className="flex flex-col items-start gap-1 pl-2">
+              <div className="flex items-center gap-1 text-gray-700">
+                <CheckCircle2 className="h-3.5 w-3.5" />
+                <span className="text-xs font-medium">Approved by</span>
+              </div>
+              <span className="text-sm text-gray-900">{project.approvedBy}</span>
+            </div>
+          </div>
+
+          {/* Builder & Contact */}
+          <div className="mt-4 flex items-center justify-between border-t border-gray-200 pt-3">
+            <div className="flex items-center gap-2">
+              {project.builderLogoUrl ? (
+                <Image
+                  src={project.builderLogoUrl}
+                  alt={project.builderLogoAlt}
+                  width={32}
+                  height={32}
+                  className="h-8 w-8 rounded-full bg-white object-contain p-0.5"
+                />
+              ) : (
+                <span className="flex h-8 w-8 items-center justify-center rounded-full bg-gray-900 text-xs font-bold text-white">
+                  {project.builderInitial}
+                </span>
+              )}
+              <div className="flex flex-col">
+                <p className="text-sm font-semibold text-gray-900">{project.builderName}</p>
+                <p className="text-xs text-gray-500">{project.builderType}</p>
               </div>
             </div>
-          ))}
-          <div className="absolute box-border caret-transparent gap-x-2 hidden outline-[3px] gap-y-2 z-10 right-16 -top-14 md:flex">
-            <button className="absolute text-sm font-medium items-center bg-gray-200 caret-transparent flex h-8 justify-center leading-5 opacity-50 outline-[3px] pointer-events-none text-center text-nowrap transform-none w-8 border border-slate-200 p-2 rounded-full -left-12 top-2/4 md:translate-y-[-50.0%]">
-              <img
-                src="https://c.animaapp.com/mqj9un6oir889A/assets/icon-22.svg"
-                alt="Icon"
-                className="box-border caret-transparent h-4 outline-[3px] text-nowrap w-4"
-              />
-            </button>
-            <button className="absolute text-sm font-medium items-center bg-gray-200 caret-transparent flex h-8 justify-center leading-5 outline-[3px] text-center text-nowrap transform-none w-8 border border-slate-200 p-2 rounded-full -right-12 top-2/4 md:translate-y-[-50.0%]">
-              <img
-                src="https://c.animaapp.com/mqj9un6oir889A/assets/icon-23.svg"
-                alt="Icon"
-                className="box-border caret-transparent h-4 outline-[3px] text-nowrap w-4"
-              />
-            </button>
+            <a
+              href="tel:+918829901400"
+              className="inline-flex items-center gap-1 rounded-md bg-gradient-to-r from-indigo-500 to-cyan-400 px-4 py-2 text-xs font-semibold text-white transition-all duration-200 hover:-translate-y-0.5 hover:from-indigo-600 hover:to-cyan-500"
+            >
+              <Phone className="h-3.5 w-3.5" />
+              Contact
+            </a>
           </div>
+        </div>
+      </article>
+    );
+  };
+
+  return (
+    <div className="relative box-border w-full outline-[3px]">
+      {/* Navigation Arrows */}
+      <div className="absolute right-0 -top-14 z-10 flex gap-3 md:right-8">
+        <button
+          type="button"
+          onClick={goToPrevious}
+          disabled={totalSlides <= 1}
+          aria-label="Previous project"
+          className="flex h-9 w-9 items-center justify-center rounded-full border border-gray-200 bg-white text-gray-600 transition-all duration-300 hover:-translate-y-0.5 hover:bg-gray-50 hover:text-gray-900 disabled:cursor-not-allowed disabled:opacity-40"
+        >
+          <ChevronLeft className="h-5 w-5" />
+        </button>
+        <button
+          type="button"
+          onClick={goToNext}
+          disabled={totalSlides <= 1}
+          aria-label="Next project"
+          className="flex h-9 w-9 items-center justify-center rounded-full border border-gray-200 bg-white text-gray-600 transition-all duration-300 hover:-translate-y-0.5 hover:bg-gray-50 hover:text-gray-900 disabled:cursor-not-allowed disabled:opacity-40"
+        >
+          <ChevronRight className="h-5 w-5" />
+        </button>
+      </div>
+
+      {/* Carousel Container */}
+      <div className="overflow-hidden">
+        <div
+          className={`flex gap-4 transition-transform ${isFeatured ? 'duration-1000' : 'duration-700'} ease-out`}
+          style={{ 
+            transform: isFeatured 
+              ? `translateX(-${activeIndex * 50}%)` 
+              : `translateX(-${activeIndex * 100}%)` 
+          }}
+        >
+          {isFeatured ? (
+            // Render all projects for featured carousel (sliding one at a time)
+            projects.map(renderFeaturedCard)
+          ) : (
+            // Original default carousel behavior
+            Array.from({ length: totalSlides }).map((_, slideIndex) => {
+              const startIndex = slideIndex * itemsPerSlide;
+              const slideProjects = projects.slice(startIndex, startIndex + itemsPerSlide);
+
+              return (
+                <div
+                  key={slideIndex}
+                  className="flex w-full shrink-0 gap-4"
+                >
+                  {slideProjects.map(renderDefaultCard)}
+                </div>
+              );
+            })
+          )}
         </div>
       </div>
     </div>
   );
 };
-

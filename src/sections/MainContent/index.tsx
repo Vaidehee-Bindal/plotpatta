@@ -14,7 +14,7 @@ import { WhyChooseSection } from "@/sections/WhyChooseSection";
 
 export const MainContent = () => {
   return (
-    <main className="box-border caret-transparent grow min-h-[auto] min-w-[auto] outline-[3px]">
+    <div className="box-border caret-transparent grow min-h-[auto] min-w-[auto] outline-[3px]">
       <Hero />
       <ProjectsSection
         rootElement="section"
@@ -172,6 +172,111 @@ export const MainContent = () => {
             builderLogoAlt: "Jaipur Acer Group",
             builderInitial: "J",
           },
+          {
+            imageUrl:
+              "https://c.animaapp.com/mqj9un6oir889A/assets/plot-1778282960160-40707-plot-1778282960160-40707-WhatsApp_Image_2026-06-02_at_2.07.07_PM_nnr2.webp",
+            imageAlt: "Navsaar Velly",
+            badgeText: "FEATURED",
+            title: "Navsaar Velly",
+            location: "Chaksu,Jaipur",
+            price: "Price On Request",
+            desktopPrice: "Price On Request",
+            averagePrice: "Rate: On Request",
+            sizeStartsAt: "N/A",
+            roadWidth: "40 ft.",
+            approvedBy: "JDA",
+            amenities: [],
+            nearby: [],
+            builderName: "Highfly Group",
+            builderType: "Builder",
+            builderLogoUrl: "",
+            builderLogoAlt: "Highfly Group",
+            builderInitial: "H",
+          },
+          {
+            imageUrl:
+              "https://c.animaapp.com/mqj9un6oir889A/assets/plot-1767391352744-21284-Screenshot_20251208_182232_Chrome_-_Devendra_Tanwar.webp",
+            imageAlt: "Bank Officer Colony ",
+            badgeText: "FEATURED",
+            title: "Bank Officer Colony ",
+            location: "Tonk Road,Jaipur",
+            price: "₹ 47.95 Lac onwards",
+            desktopPrice: "₹ 47.95 Lac onwards",
+            averagePrice: "Avg. Price ₹ 5,328/sq.ft.",
+            sizeStartsAt: "100",
+            roadWidth: "40 ft.",
+            approvedBy: "JDA",
+            amenities: [],
+            nearby: [],
+            builderName: "Aadharshila Group",
+            builderType: "Builder",
+            builderLogoUrl: "",
+            builderLogoAlt: "Aadharshila Group",
+            builderInitial: "A",
+          },
+          {
+            imageUrl:
+              "https://c.animaapp.com/mqj9un6oir889A/assets/plot-1777008648748-63739-Untitled-design-43_-_Devendra_Tanwar.webp",
+            imageAlt: "DefineD world City phase 2",
+            badgeText: "FEATURED",
+            title: "DefineD world City phase 2",
+            location: "Ajmer Road,Jaipur",
+            price: "₹ 55.00 Lac onwards",
+            desktopPrice: "₹ 55.00 Lac onwards",
+            averagePrice: "Avg. Price ₹ 6,111/sq.ft.",
+            sizeStartsAt: "100",
+            roadWidth: "30,40 ft.",
+            approvedBy: "JDA",
+            amenities: [],
+            nearby: [],
+            builderName: "JDB Group",
+            builderType: "Builder",
+            builderLogoUrl: "",
+            builderLogoAlt: "JDB Group",
+            builderInitial: "J",
+          },
+          {
+            imageUrl:
+              "https://c.animaapp.com/mqj9un6oir889A/assets/plot-1778489682293-20832-plot-1778489682293-20832-WhatsApp_Image_2026-05-28_at_10.48.58_PM_oy4b2x.webp",
+            imageAlt: "Yaduraj Samsara",
+            badgeText: "FEATURED",
+            title: "Yaduraj Samsara",
+            location: "Ajmer Road,Jaipur",
+            price: "₹ 40.00 Lac onwards",
+            desktopPrice: "₹ 40.00 Lac onwards",
+            averagePrice: "Avg. Price ₹ 4,444/sq.ft.",
+            sizeStartsAt: "100",
+            roadWidth: "30,60 ft.",
+            approvedBy: "JDA",
+            amenities: [],
+            nearby: [],
+            builderName: "Yuduraj Realty",
+            builderType: "Builder",
+            builderLogoUrl: "",
+            builderLogoAlt: "Yuduraj Realty",
+            builderInitial: "Y",
+          },
+          {
+            imageUrl:
+              "https://c.animaapp.com/mqj9un6oir889A/assets/plot-1766493244086-58420-plot-1766493244086-58420-WhatsApp_Image_2026-05-28_at_10.51.33_PM_m8h1q.webp",
+            imageAlt: "Shourya Nagar",
+            badgeText: "FEATURED",
+            title: "Shourya Nagar",
+            location: "Ajmer Road,Jaipur",
+            price: "₹ 9.95 Lac onwards",
+            desktopPrice: "₹ 9.95 Lac onwards",
+            averagePrice: "Avg. Price ₹ 1,106/sq.ft.",
+            sizeStartsAt: "100",
+            roadWidth: "40,60 ft.",
+            approvedBy: "JDA",
+            amenities: [],
+            nearby: [],
+            builderName: "Mansukh Group",
+            builderType: "Builder",
+            builderLogoUrl: "",
+            builderLogoAlt: "Mansukh Group",
+            builderInitial: "M",
+          },
         ]}
       />
       <SellerHotDeals />
@@ -185,6 +290,6 @@ export const MainContent = () => {
       <TestimonialsSection />
       <FaqSection />
       <WhyChooseSection />
-    </main>
+    </div>
   );
 };

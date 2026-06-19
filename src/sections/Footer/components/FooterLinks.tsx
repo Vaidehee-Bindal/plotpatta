@@ -1,4 +1,5 @@
 import { FooterColumn } from "@/sections/Footer/components/FooterColumn";
+import { Image } from "@/components/ui/OptimizedImage";
 
 export const FooterLinks = () => {
   return (
@@ -43,7 +44,7 @@ export const FooterLinks = () => {
             className="text-sm items-center bg-teal-800 box-border caret-transparent flex h-10 justify-center leading-5 min-h-[auto] min-w-[auto] outline-[3px] w-10 p-2 rounded-full md:text-base md:leading-6 md:min-h-0 md:min-w-0"
           >
             <span className="text-white text-sm box-border caret-transparent block leading-5 min-h-[auto] min-w-[auto] outline-[3px] md:text-base md:leading-6 md:min-h-0 md:min-w-0">
-              <img
+              <Image
                 src="https://c.animaapp.com/mqj9un6oir889A/assets/icon-53.svg"
                 alt="Icon"
                 className="text-sm box-border caret-transparent h-[18px] leading-5 outline-[3px] w-[18px] md:text-base md:leading-6"
@@ -56,7 +57,7 @@ export const FooterLinks = () => {
             className="text-sm items-center bg-teal-800 box-border caret-transparent flex h-10 justify-center leading-5 min-h-[auto] min-w-[auto] outline-[3px] w-10 p-2 rounded-full md:text-base md:leading-6 md:min-h-0 md:min-w-0"
           >
             <span className="text-white text-sm box-border caret-transparent block leading-5 min-h-[auto] min-w-[auto] outline-[3px] md:text-base md:leading-6 md:min-h-0 md:min-w-0">
-              <img
+              <Image
                 src="https://c.animaapp.com/mqj9un6oir889A/assets/icon-54.svg"
                 alt="Icon"
                 className="text-sm box-border caret-transparent h-[18px] leading-5 outline-[3px] w-[18px] md:text-base md:leading-6"
@@ -69,7 +70,7 @@ export const FooterLinks = () => {
             className="text-sm items-center bg-teal-800 box-border caret-transparent flex h-10 justify-center leading-5 min-h-[auto] min-w-[auto] outline-[3px] w-10 p-2 rounded-full md:text-base md:leading-6 md:min-h-0 md:min-w-0"
           >
             <span className="text-white text-sm box-border caret-transparent block leading-5 min-h-[auto] min-w-[auto] outline-[3px] md:text-base md:leading-6 md:min-h-0 md:min-w-0">
-              <img
+              <Image
                 src="https://c.animaapp.com/mqj9un6oir889A/assets/icon-55.svg"
                 alt="Icon"
                 className="text-sm box-border caret-transparent h-[18px] leading-5 outline-[3px] w-[18px] md:text-base md:leading-6"
@@ -82,7 +83,7 @@ export const FooterLinks = () => {
             className="text-sm items-center bg-teal-800 box-border caret-transparent flex h-10 justify-center leading-5 min-h-[auto] min-w-[auto] outline-[3px] w-10 p-2 rounded-full md:text-base md:leading-6 md:min-h-0 md:min-w-0"
           >
             <span className="text-white text-sm box-border caret-transparent block leading-5 min-h-[auto] min-w-[auto] outline-[3px] md:text-base md:leading-6 md:min-h-0 md:min-w-0">
-              <img
+              <Image
                 src="https://c.animaapp.com/mqj9un6oir889A/assets/icon-56.svg"
                 alt="Icon"
                 className="text-sm box-border caret-transparent h-[18px] leading-5 outline-[3px] w-[18px] md:text-base md:leading-6"
@@ -95,7 +96,7 @@ export const FooterLinks = () => {
             className="text-sm items-center bg-teal-800 box-border caret-transparent flex h-10 justify-center leading-5 min-h-[auto] min-w-[auto] outline-[3px] w-10 p-2 rounded-full md:text-base md:leading-6 md:min-h-0 md:min-w-0"
           >
             <span className="text-white text-sm box-border caret-transparent block leading-5 min-h-[auto] min-w-[auto] outline-[3px] md:text-base md:leading-6 md:min-h-0 md:min-w-0">
-              <img
+              <Image
                 src="https://c.animaapp.com/mqj9un6oir889A/assets/icon-57.svg"
                 alt="Icon"
                 className="text-sm box-border caret-transparent h-[18px] leading-5 outline-[3px] w-[18px] md:text-base md:leading-6"

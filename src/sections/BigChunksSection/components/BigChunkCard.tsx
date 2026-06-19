@@ -1,3 +1,5 @@
+import { Image } from "@/components/ui/OptimizedImage";
+
 export type BigChunkCardProps = {
   imageUrl: string;
   price: string;
@@ -18,7 +20,7 @@ export const BigChunkCard = (props: BigChunkCardProps) => {
         <div className="relative box-border caret-transparent min-h-[auto] min-w-[auto] outline-[3px] w-full">
           <div className="relative box-border caret-transparent outline-[3px] w-full overflow-hidden rounded-t-md">
             <div className="box-border caret-transparent flex h-[150px] outline-[3px] w-full md:h-[200px]">
-              <img
+              <Image
                 src={props.imageUrl}
                 alt="Residential plot / land for sale"
                 className="box-border caret-transparent h-full max-w-full min-h-[auto] min-w-[auto] object-cover outline-[3px] w-full"
@@ -26,7 +28,7 @@ export const BigChunkCard = (props: BigChunkCardProps) => {
             </div>
           </div>
           <div className="absolute text-red-800 text-xs font-semibold items-center bg-red-100 box-border caret-transparent gap-x-2 flex leading-4 outline-[3px] gap-y-2 ml-2 px-3 py-1 rounded-bl rounded-br rounded-tl rounded-tr left-2 top-2">
-            <img
+            <Image
               src="https://c.animaapp.com/mqj9un6oir889A/assets/icon-42.svg"
               alt="Icon"
               className="box-border caret-transparent h-3.5 outline-[3px] w-3.5"
@@ -35,14 +37,14 @@ export const BigChunkCard = (props: BigChunkCardProps) => {
           </div>
           <div className="absolute box-border caret-transparent gap-x-1 flex outline-[3px] gap-y-1 z-10 right-2 top-2 md:gap-x-2 md:gap-y-2">
             <button className="text-sm font-medium items-center bg-white caret-transparent flex h-7 justify-center leading-5 min-h-[auto] min-w-[auto] outline-[3px] text-center text-nowrap w-7 border border-slate-200 p-0 rounded-md md:h-8 md:w-8">
-              <img
+              <Image
                 src="https://c.animaapp.com/mqj9un6oir889A/assets/icon-43.svg"
                 alt="Icon"
                 className="box-border caret-transparent h-4 outline-[3px] text-nowrap w-4"
               />
             </button>
             <button className="text-sm font-medium items-center bg-white caret-transparent flex h-7 justify-center leading-5 min-h-[auto] min-w-[auto] outline-[3px] text-center text-nowrap w-7 border border-slate-200 p-0 rounded-md md:h-8 md:w-8">
-              <img
+              <Image
                 src="https://c.animaapp.com/mqj9un6oir889A/assets/icon-13.svg"
                 alt="Icon"
                 className="box-border caret-transparent h-3 outline-[3px] text-nowrap w-3"
@@ -77,7 +79,7 @@ export const BigChunkCard = (props: BigChunkCardProps) => {
               </p>
               <div className="text-gray-700 text-xs items-center bg-gray-100 box-border caret-transparent gap-x-4 flex justify-between leading-4 min-h-[auto] min-w-[auto] outline-[3px] gap-y-4 my-2 px-6 py-1.5 rounded-lg md:text-sm md:hidden md:leading-5 md:min-h-0 md:min-w-0">
                 <div className="text-xs items-center box-border caret-transparent gap-x-2 flex leading-4 min-h-[auto] min-w-[auto] outline-[3px] gap-y-2 md:text-sm md:leading-5 md:min-h-0 md:min-w-0">
-                  <img
+                  <Image
                     src="https://c.animaapp.com/mqj9un6oir889A/assets/icon-14.svg"
                     alt="Icon"
                     className="text-gray-500 text-xs box-border caret-transparent h-3.5 leading-4 outline-[3px] w-3.5 md:text-sm md:leading-5"
@@ -92,7 +94,7 @@ export const BigChunkCard = (props: BigChunkCardProps) => {
                   </div>
                 </div>
                 <div className="text-xs items-center box-border caret-transparent gap-x-2 flex leading-4 min-h-[auto] min-w-[auto] outline-[3px] gap-y-2 md:text-sm md:leading-5 md:min-h-0 md:min-w-0">
-                  <img
+                  <Image
                     src="https://c.animaapp.com/mqj9un6oir889A/assets/icon-44.svg"
                     alt="Icon"
                     className="text-gray-500 text-xs box-border caret-transparent h-3.5 leading-4 outline-[3px] w-3.5 md:text-sm md:leading-5"
@@ -113,7 +115,7 @@ export const BigChunkCard = (props: BigChunkCardProps) => {
             <div className="text-xs bg-gray-100 box-border caret-transparent hidden leading-4 outline-[3px] scroll-smooth w-full overflow-auto p-3 rounded-md md:text-sm md:flex md:leading-5">
               <div className="text-xs items-center box-border caret-transparent gap-x-6 flex leading-4 min-h-0 min-w-max outline-[3px] gap-y-6 md:text-sm md:leading-5 md:min-h-[auto]">
                 <div className="text-xs items-center box-border caret-transparent gap-x-2 flex leading-4 min-h-0 min-w-0 outline-[3px] gap-y-2 md:text-sm md:leading-5 md:min-h-[auto] md:min-w-[auto]">
-                  <img
+                  <Image
                     src="https://c.animaapp.com/mqj9un6oir889A/assets/icon-45.svg"
                     alt="Icon"
                     className="text-gray-500 text-xs box-border caret-transparent h-4 leading-4 outline-[3px] w-4 md:text-sm md:leading-5"
@@ -128,7 +130,7 @@ export const BigChunkCard = (props: BigChunkCardProps) => {
                   </div>
                 </div>
                 <div className="text-xs items-center box-border caret-transparent gap-x-2 flex leading-4 min-h-0 min-w-0 outline-[3px] gap-y-2 border-gray-300 pl-4 border-l border-solid md:text-sm md:leading-5 md:min-h-[auto] md:min-w-[auto]">
-                  <img
+                  <Image
                     src="https://c.animaapp.com/mqj9un6oir889A/assets/icon-46.svg"
                     alt="Icon"
                     className="text-gray-500 text-xs box-border caret-transparent h-4 leading-4 outline-[3px] w-4 md:text-sm md:leading-5"
@@ -143,7 +145,7 @@ export const BigChunkCard = (props: BigChunkCardProps) => {
                   </div>
                 </div>
                 <div className="text-xs items-center box-border caret-transparent gap-x-2 flex leading-4 min-h-0 min-w-0 outline-[3px] gap-y-2 border-gray-300 pl-4 border-l border-solid md:text-sm md:leading-5 md:min-h-[auto] md:min-w-[auto]">
-                  <img
+                  <Image
                     src="https://c.animaapp.com/mqj9un6oir889A/assets/icon-47.svg"
                     alt="Icon"
                     className="text-gray-500 text-xs box-border caret-transparent h-4 leading-4 outline-[3px] w-4 md:text-sm md:leading-5"
@@ -183,7 +185,7 @@ export const BigChunkCard = (props: BigChunkCardProps) => {
                   Contact
                 </span>
                 <div className="items-center box-border caret-transparent gap-x-2 hidden min-h-0 min-w-0 outline-[3px] gap-y-2 text-nowrap md:flex md:min-h-[auto] md:min-w-[auto]">
-                  <img
+                  <Image
                     src="https://c.animaapp.com/mqj9un6oir889A/assets/icon-21.svg"
                     alt="Icon"
                     className="text-lg box-border caret-transparent shrink-0 h-[18px] leading-7 outline-[3px] text-nowrap w-[18px]"

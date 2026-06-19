@@ -1,3 +1,5 @@
+import { Image } from "@/components/ui/OptimizedImage";
+
 export const MobileHero = () => {
   return (
     <div className="relative box-border caret-transparent block h-[250px] outline-[3px] w-full bg-center mb-64 md:hidden md:h-[420px] md:mb-28">
@@ -25,7 +27,7 @@ export const MobileHero = () => {
                 <span className="box-border caret-transparent flow-root min-h-[auto] min-w-[auto] outline-[3px] pointer-events-none overflow-hidden md:min-h-0 md:min-w-0">
                   Jaipur
                 </span>
-                <img
+                <Image
                   src="https://c.animaapp.com/mqj9un6oir889A/assets/icon-8.svg"
                   alt="Icon"
                   className="box-border caret-transparent h-4 opacity-50 outline-[3px] w-4"
@@ -39,14 +41,14 @@ export const MobileHero = () => {
                 <span className="box-border caret-transparent flow-root min-h-[auto] min-w-[auto] outline-[3px] pointer-events-none overflow-hidden md:min-h-0 md:min-w-0">
                   Residential
                 </span>
-                <img
+                <Image
                   src="https://c.animaapp.com/mqj9un6oir889A/assets/icon-8.svg"
                   alt="Icon"
                   className="box-border caret-transparent h-4 opacity-50 outline-[3px] w-4"
                 />
               </button>
               <button className="text-white items-center bg-teal-900 caret-transparent flex justify-center min-h-[auto] min-w-[auto] outline-[3px] px-4 py-0 rounded-xl md:min-h-0 md:min-w-0">
-                <img
+                <Image
                   src="https://c.animaapp.com/mqj9un6oir889A/assets/icon-10.svg"
                   alt="Icon"
                   className="box-border caret-transparent h-4 outline-[3px] w-4"

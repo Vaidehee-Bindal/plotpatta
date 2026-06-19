@@ -100,11 +100,22 @@ module.exports = {
           from: { height: "var(--radix-accordion-content-height)" },
           to: { height: "0" },
         },
+        "page-in": {
+          "0%": {
+            opacity: "0",
+            transform: "translateY(18px) scale(0.99)",
+          },
+          "100%": {
+            opacity: "1",
+            transform: "translateY(0) scale(1)",
+          },
+        },
       },
 
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
+        "page-in": "page-in 420ms cubic-bezier(0.16, 1, 0.3, 1)",
       },
     },
 

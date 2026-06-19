@@ -1,9 +1,11 @@
+import { Image } from "@/components/ui/OptimizedImage";
+
 export const WhyChooseSection = () => {
   return (
     <section className="box-border caret-transparent max-w-none outline-[3px] plotpatta-wide mx-auto px-4 py-12">
       <div className="items-center box-border caret-transparent gap-x-14 flex flex-col outline-[3px] gap-y-14 md:flex-row">
         <div className="box-border caret-transparent h-[300px] min-h-[auto] min-w-[auto] outline-[3px] w-full md:h-[500px] md:w-6/12">
-          <img
+          <Image
             src="https://c.animaapp.com/mqj9un6oir889A/assets/pexels-anastasia-shuraeva-5495063_sze96g_1_lt7yas.webp"
             sizes="(max-width: 768px) 100vw, 50vw"
             alt="Plots and real estate aerial view"

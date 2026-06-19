@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 export type FooterColumnProps = {
   title: string;
   links: {
@@ -22,12 +24,12 @@ export const FooterColumn = (props: FooterColumnProps) => {
                 : "text-sm box-border caret-transparent leading-5 outline-[3px] mt-1 md:text-base md:leading-6"
             }
           >
-            <a
+            <Link
               href={link.href}
               className="text-sm box-border caret-transparent leading-5 outline-[3px] md:text-base md:leading-6"
             >
               {link.label}
-            </a>
+            </Link>
           </li>
         ))}
       </ul>
