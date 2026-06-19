@@ -12,6 +12,10 @@ const nextConfig = {
         protocol: "https",
         hostname: "plotpatta.com",
       },
+      {
+        protocol: "https",
+        hostname: "res.cloudinary.com",
+      },
     ],
   },
   webpack: (config) => {

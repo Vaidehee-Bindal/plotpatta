@@ -9,7 +9,6 @@ type OptimizedImageProps = Omit<
   width?: number;
   height?: number;
 };
-
 export const Image = ({
   width = 1200,
   height = 800,
@@ -19,11 +18,16 @@ export const Image = ({
   unoptimized,
   ...props
 }: OptimizedImageProps) => {
-  const isSvg = typeof src === "string" && src.endsWith(".svg");
+  const cleanedSrc =
+    typeof src === "string" ? src.trim() : src;
+
+  const isSvg =
+    typeof cleanedSrc === "string" &&
+    cleanedSrc.endsWith(".svg");
 
   return (
     <NextImage
-      src={src}
+      src={cleanedSrc}
       width={width}
       height={height}
       sizes={sizes}

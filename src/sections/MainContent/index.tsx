@@ -174,7 +174,7 @@ export const MainContent = () => {
           },
           {
             imageUrl:
-              "https://c.animaapp.com/mqj9un6oir889A/assets/plot-1778282960160-40707-plot-1778282960160-40707-WhatsApp_Image_2026-06-02_at_2.07.07_PM_nnr2.webp",
+              "https://res.cloudinary.com/dz6qkksvj/image/fetch/f_auto,q_auto,w_1400/https%3A%2F%2Fapi.plotpatta.com%2Fstorage%2Fv1%2Fobject%2Fpublic%2Fplot-images%2Fplot-1780892919012-52334-1000774831.webp",
             imageAlt: "Navsaar Velly",
             badgeText: "FEATURED",
             title: "Navsaar Velly",
@@ -195,7 +195,7 @@ export const MainContent = () => {
           },
           {
             imageUrl:
-              "https://c.animaapp.com/mqj9un6oir889A/assets/plot-1767391352744-21284-Screenshot_20251208_182232_Chrome_-_Devendra_Tanwar.webp",
+              "https://res.cloudinary.com/dz6qkksvj/image/fetch/f_auto,q_auto,w_1400/https%3A%2F%2Fapi.plotpatta.com%2Fstorage%2Fv1%2Fobject%2Fpublic%2Fplot-images%2Fplot-1765011900300-2645-IMG-20251205-WA0043%20-%20Devendra%20Tanwar.webp",
             imageAlt: "Bank Officer Colony ",
             badgeText: "FEATURED",
             title: "Bank Officer Colony ",
@@ -216,7 +216,7 @@ export const MainContent = () => {
           },
           {
             imageUrl:
-              "https://c.animaapp.com/mqj9un6oir889A/assets/plot-1777008648748-63739-Untitled-design-43_-_Devendra_Tanwar.webp",
+              "https://res.cloudinary.com/dz6qkksvj/image/fetch/f_auto,q_auto,w_1400/https%3A%2F%2Fapi.plotpatta.com%2Fstorage%2Fv1%2Fobject%2Fpublic%2Fplot-images%2Fplot-1764075525427-93087-IMG-20250623-WA0030%20-%20Devendra%20Tanwar%20(1)%20-%20Copy.webp",
             imageAlt: "DefineD world City phase 2",
             badgeText: "FEATURED",
             title: "DefineD world City phase 2",
@@ -237,7 +237,7 @@ export const MainContent = () => {
           },
           {
             imageUrl:
-              "https://c.animaapp.com/mqj9un6oir889A/assets/plot-1778489682293-20832-plot-1778489682293-20832-WhatsApp_Image_2026-05-28_at_10.48.58_PM_oy4b2x.webp",
+              "https://res.cloudinary.com/dz6qkksvj/image/fetch/f_auto,q_auto,w_1400/https%3A%2F%2Fapi.plotpatta.com%2Fstorage%2Fv1%2Fobject%2Fpublic%2Fplot-images%2Fplot-1764909977281-60723-IMG-20251202-WA0085%20-%20Devendra%20Tanwar.webp",
             imageAlt: "Yaduraj Samsara",
             badgeText: "FEATURED",
             title: "Yaduraj Samsara",
@@ -258,7 +258,7 @@ export const MainContent = () => {
           },
           {
             imageUrl:
-              "https://c.animaapp.com/mqj9un6oir889A/assets/plot-1766493244086-58420-plot-1766493244086-58420-WhatsApp_Image_2026-05-28_at_10.51.33_PM_m8h1q.webp",
+              "https://res.cloudinary.com/dz6qkksvj/image/fetch/f_auto,q_auto,w_1400/https%3A%2F%2Fapi.plotpatta.com%2Fstorage%2Fv1%2Fobject%2Fpublic%2Fplot-images%2Fplot-1771565309205-45755-1000261911.webp",
             imageAlt: "Shourya Nagar",
             badgeText: "FEATURED",
             title: "Shourya Nagar",
