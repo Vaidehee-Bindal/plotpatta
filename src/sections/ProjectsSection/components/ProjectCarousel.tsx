@@ -1,8 +1,9 @@
 "use client";
 
 import { CheckCircle2, ChevronLeft, ChevronRight, Heart, Link2, Phone, Share2, Ruler, Building2 } from "lucide-react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Image } from "@/components/ui/OptimizedImage";
+
 
 export type ProjectCarouselProps = {
   variant: string;
@@ -37,12 +38,27 @@ const slugify = (value: string) =>
 export const ProjectCarousel = ({ variant, projects }: ProjectCarouselProps) => {
   const [activeIndex, setActiveIndex] = useState(0);
   const [savedProjects, setSavedProjects] = useState<string[]>([]);
+  const [isMobile, setIsMobile] = useState(false);
+
+useEffect(() => {
+  const checkMobile = () => {
+    setIsMobile(window.innerWidth < 768);
+  };
+
+  checkMobile();
+  window.addEventListener("resize", checkMobile);
+
+  return () => window.removeEventListener("resize", checkMobile);
+}, []);
   const isFeatured = variant === "featured";
-  const itemsPerSlide = isFeatured ? 2 : 1;
-  const slideIncrement = isFeatured ? 1 : 1; // Overlap by 1 item for featured
-  const totalSlides = isFeatured 
-    ? projects.length - itemsPerSlide + 1 
-    : Math.ceil(projects.length / itemsPerSlide);
+
+const itemsPerSlide = isFeatured
+  ? (isMobile ? 1 : 2)
+  : 1;
+
+const totalSlides = isFeatured
+  ? Math.max(1, projects.length - itemsPerSlide + 1)
+  : Math.ceil(projects.length / itemsPerSlide);
 
   if (!projects.length) {
     return null;
@@ -184,7 +200,7 @@ export const ProjectCarousel = ({ variant, projects }: ProjectCarouselProps) => 
     return (
       <article
         key={project.title}
-        className="group shrink-0 w-[calc(50%-8px)] overflow-hidden rounded-lg border border-gray-200 bg-white shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-lg"
+        className="group shrink-0 w-full md:w-[calc(50%-8px)] overflow-hidden rounded-lg border border-gray-200 bg-white shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-lg"
       >
         {/* Image Section */}
         <div className="relative h-48 overflow-hidden bg-gray-100 sm:h-56">
@@ -327,9 +343,9 @@ export const ProjectCarousel = ({ variant, projects }: ProjectCarouselProps) => 
         <div
           className={`flex gap-4 transition-transform ${isFeatured ? 'duration-1000' : 'duration-700'} ease-out`}
           style={{ 
-            transform: isFeatured 
-              ? `translateX(-${activeIndex * 50}%)` 
-              : `translateX(-${activeIndex * 100}%)` 
+            transform: isFeatured
+  ? `translateX(-${activeIndex * (isMobile ? 100 : 50)}%)`
+  : `translateX(-${activeIndex * 100}%)`
           }}
         >
           {isFeatured ? (

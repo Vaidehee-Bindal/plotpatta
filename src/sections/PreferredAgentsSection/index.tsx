@@ -1,71 +1,142 @@
+"use client";
+
+import { useState, useEffect } from "react";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 import { PreferredAgentCard } from "@/sections/PreferredAgentsSection/components/PreferredAgentCard";
-import { Image } from "@/components/ui/OptimizedImage";
 
 export const PreferredAgentsSection = () => {
+  const [activeIndex, setActiveIndex] = useState(0);
+  const [cardsPerView, setCardsPerView] = useState(4);
+
+  const agents = [
+    {
+      initial: "P",
+      agentName: "Priyam Dahlan",
+      location: "Jaipur, Rajasthan",
+      agencyName: "Divine Group",
+      operatingSince: "2021",
+      buyersServed: "400+",
+      buttonText: "Contact Agent",
+    },
+    {
+      initial: "R",
+      agentName: "Ramavtar Sharma",
+      location: "Jaipur, Rajasthan",
+      agencyName: "Aashirwad Homes",
+      operatingSince: "2015",
+      buyersServed: "400+",
+      buttonText: "Contact Agent",
+    },
+    {
+      initial: "A",
+      agentName: "Abhishek",
+      location: "Jaipur, Rajasthan",
+      agencyName: "Khedapati Realty",
+      operatingSince: "2020",
+      buyersServed: "200+",
+      buttonText: "Contact Agent",
+    },
+
+    // Future 4th card example
+    // {
+    //   initial: "S",
+    //   agentName: "Suresh Sharma",
+    //   location: "Jaipur, Rajasthan",
+    //   agencyName: "Property Hub",
+    //   operatingSince: "2018",
+    //   buyersServed: "500+",
+    //   buttonText: "Contact Agent",
+    // },
+  ];
+
+  useEffect(() => {
+    const updateCardsPerView = () => {
+      if (window.innerWidth >= 1024) {
+        setCardsPerView(4); // Desktop
+      } else if (window.innerWidth >= 768) {
+        setCardsPerView(2); // Tablet
+      } else {
+        setCardsPerView(1); // Mobile
+      }
+    };
+
+    updateCardsPerView();
+    window.addEventListener("resize", updateCardsPerView);
+
+    return () =>
+      window.removeEventListener("resize", updateCardsPerView);
+  }, []);
+
+  const maxIndex = Math.max(0, agents.length - cardsPerView);
+
+  const goToPrevious = () => {
+    setActiveIndex((current) =>
+      current === 0 ? maxIndex : current - 1
+    );
+  };
+
+  const goToNext = () => {
+    setActiveIndex((current) =>
+      current >= maxIndex ? 0 : current + 1
+    );
+  };
+
   return (
-    <section className="box-border caret-transparent outline-[3px] mt-10 mb-14 px-2 md:mt-20">
-      <div className="box-border caret-transparent max-w-none outline-[3px] plotpatta-wide mx-auto px-3">
-        <div className="box-border caret-transparent outline-[3px] px-2">
-          <h2 className="text-gray-900 text-xl font-extrabold box-border caret-transparent inline-block leading-7 outline-[3px] font-poppins md:text-2xl md:leading-8">
+    <section className="mt-10 mb-14 px-2 md:mt-20">
+      <div className="plotpatta-wide mx-auto px-3">
+        <div className="relative px-2 pr-24 md:pr-0">
+          <h2 className="text-gray-900 text-xl font-extrabold leading-7 font-poppins md:text-2xl md:leading-8 break-words max-w-[220px] md:max-w-none">
             Plotpatta Preferred Agents
-            <span className="text-xl bg-gray-800 box-border caret-transparent block h-1 leading-7 outline-[3px] w-12 mt-1 rounded-full md:text-2xl md:leading-8"></span>
+            <span className="block h-1 w-12 mt-1 rounded-full bg-gray-800"></span>
           </h2>
-          <p className="text-gray-600 text-sm box-border caret-transparent leading-5 max-w-md outline-[3px] mt-2">
+
+          <p className="text-gray-600 text-sm leading-5 max-w-md mt-2">
             Explore top property deals with trusted agents in Jaipur.
           </p>
+
+          <div className="absolute right-0 top-0 flex gap-2 md:gap-3">
+            <button
+              type="button"
+              onClick={goToPrevious}
+              aria-label="Previous agent"
+              className="flex h-10 w-10 items-center justify-center rounded-full border border-gray-200 bg-white text-gray-600 transition-all hover:bg-gray-50 hover:text-gray-900"
+            >
+              <ChevronLeft className="h-5 w-5" />
+            </button>
+
+            <button
+              type="button"
+              onClick={goToNext}
+              aria-label="Next agent"
+              className="flex h-10 w-10 items-center justify-center rounded-full border border-gray-200 bg-white text-gray-600 transition-all hover:bg-gray-50 hover:text-gray-900"
+            >
+              <ChevronRight className="h-5 w-5" />
+            </button>
+          </div>
         </div>
-        <div className="relative box-border caret-transparent outline-[3px] mt-6">
+
+        <div className="mt-6 overflow-hidden">
           <div
-            role="region"
-            className="relative box-border caret-transparent outline-[3px] w-full"
+            className="flex transition-transform duration-700 ease-out"
+            style={{
+              transform: `translateX(-${
+                activeIndex * (100 / cardsPerView)
+              }%)`,
+            }}
           >
-            <div className="box-border caret-transparent outline-[3px] overflow-hidden">
-              <div className="box-border caret-transparent flex outline-[3px] -ml-1">
-                <PreferredAgentCard
-                  initial="P"
-                  agentName="Priyam Dahlan"
-                  location="Jaipur, Rajasthan"
-                  agencyName="Divine Group"
-                  operatingSince="2021"
-                  buyersServed="400+"
-                  buttonText="Contact Agent"
-                />
-                <PreferredAgentCard
-                  initial="R"
-                  agentName="Ramavtar Sharma"
-                  location="Jaipur, Rajasthan"
-                  agencyName="Aashirwad Homes"
-                  operatingSince="2015"
-                  buyersServed="400+"
-                  buttonText="Contact Agent"
-                />
-                <PreferredAgentCard
-                  initial="A"
-                  agentName="Abhishek"
-                  location="Jaipur, Rajasthan"
-                  agencyName="Khedapati Realty"
-                  operatingSince="2020"
-                  buyersServed="200+"
-                  buttonText="Contact Agent"
-                />
+            {agents.map((agent, index) => (
+              <div
+                key={index}
+                className="
+                  shrink-0
+                  w-full
+                  md:w-1/2
+                  lg:w-1/4
+                "
+              >
+                <PreferredAgentCard {...agent} />
               </div>
-            </div>
-            <div className="absolute box-border caret-transparent gap-x-2 hidden outline-[3px] gap-y-2 z-10 right-16 -top-14 md:flex">
-              <button className="absolute text-sm font-medium items-center bg-gray-200 caret-transparent flex h-8 justify-center leading-5 opacity-50 outline-[3px] pointer-events-none text-center text-nowrap transform-none w-8 border border-slate-200 p-2 rounded-full -left-12 top-2/4 md:translate-y-[-50.0%]">
-                <Image
-                  src="https://c.animaapp.com/mqj9un6oir889A/assets/icon-22.svg"
-                  alt="Icon"
-                  className="box-border caret-transparent h-4 outline-[3px] text-nowrap w-4"
-                />
-              </button>
-              <button className="absolute text-sm font-medium items-center bg-gray-200 caret-transparent flex h-8 justify-center leading-5 opacity-100 outline-[3px] pointer-events-auto text-center text-nowrap transform-none w-8 border border-slate-200 p-2 rounded-full -right-12 top-2/4 md:opacity-50 md:pointer-events-none md:translate-y-[-50.0%]">
-                <Image
-                  src="https://c.animaapp.com/mqj9un6oir889A/assets/icon-23.svg"
-                  alt="Icon"
-                  className="box-border caret-transparent h-4 outline-[3px] pointer-events-auto text-nowrap w-4 md:pointer-events-none"
-                />
-              </button>
-            </div>
+            ))}
           </div>
         </div>
       </div>

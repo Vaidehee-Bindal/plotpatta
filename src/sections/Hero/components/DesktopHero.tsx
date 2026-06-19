@@ -56,7 +56,7 @@ export const DesktopHero = () => {
   };
 
   return (
-    <div className="relative box-border caret-transparent hidden h-[300px] max-h-[560px] min-h-60 outline-[3px] w-full mb-20 md:mx-auto md:block md:h-[420px] md:max-w-screen-2xl md:mb-24 overflow-visible">
+    <div className="relative box-border caret-transparent hidden h-[300px] max-h-[560px] min-h-60 outline-[3px] w-full mb-20 md:block md:h-[420px] md:mb-24 overflow-visible">
       <div
         ref={carouselRef}
         className="flex transition-transform duration-500 ease-in-out h-full"

@@ -2,7 +2,6 @@
 
 import {
   Menu,
-  Edit,
   X,
   Home,
   LayoutDashboard,
@@ -14,6 +13,7 @@ import {
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
+import { ArrowRightToLine } from "lucide-react";
 
 type MobileNavActionsProps = {
   isOverlay: boolean;
@@ -57,26 +57,26 @@ export const MobileNavActions = ({ isOverlay }: MobileNavActionsProps) => {
   ];
 
   return (
-    <div className="relative items-center box-border caret-transparent gap-x-2 flex min-h-[auto] min-w-[auto] outline-[3px] gap-y-2 md:hidden md:min-h-0 md:min-w-0">
+    <div className="relative items-center box-border caret-transparent gap-x-3 flex min-h-[auto] min-w-[auto] outline-[3px] gap-y-2 md:hidden md:min-h-0 md:min-w-0">
       <Link
-        href="/plans"
-        className="text-xs items-center caret-transparent gap-x-2 flex leading-4 min-h-[auto] min-w-[auto] outline-[3px] gap-y-2 text-center px-3 py-2 rounded-xl border border-amber-400 bg-amber-400 font-semibold text-slate-950 shadow-[0_14px_24px_-16px_rgba(15,23,42,0.75)] transition-all duration-300 hover:-translate-y-0.5 md:min-h-0 md:min-w-0"
-      >
-        <Edit className="h-3.5 w-3.5 text-slate-900" />
-        Add Property
-      </Link>
+  href="/login"
+  className="flex items-center gap-1.5 rounded-xl bg-[#204f4b] px-2.5 py-2 text-sm font-semibold text-white transition-all duration-300 hover:bg-[#183d3a]"
+>
+  <ArrowRightToLine className="h-3.5 w-3.5" />
+  Login
+</Link>
 
       <button
         type="button"
         onClick={() => setIsMenuOpen((current) => !current)}
         aria-expanded={isMenuOpen}
-        className={`text-2xl caret-transparent block leading-8 min-h-[auto] min-w-[auto] outline-[3px] text-center p-0 h-11 w-11 rounded-xl border transition-colors duration-300 md:inline-block md:min-h-0 md:min-w-0 ${
+        className={`caret-transparent block text-center p-0 h-10 w-10 rounded-lg border transition-colors duration-300 ${
           isOverlay
             ? "border-amber-400 bg-amber-400"
             : "border-slate-300 bg-white"
         }`}
       >
-        <Menu className="mx-auto h-5 w-5 text-slate-900" />
+        <Menu className="mx-auto h-4 w-4 text-slate-900" />
       </button>
 
       {isMenuOpen && (
