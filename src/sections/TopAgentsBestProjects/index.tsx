@@ -1,13 +1,23 @@
 import { Image } from "@/components/ui/OptimizedImage";
 import Link from "next/link";
+import { localities } from "@/data/localities";
+
+const iconSrcsTopAgents = [
+  "https://c.animaapp.com/mqj9un6oir889A/assets/icon-31.svg",
+  "https://c.animaapp.com/mqj9un6oir889A/assets/icon-28.svg",
+  "https://c.animaapp.com/mqj9un6oir889A/assets/icon-30.svg",
+  "https://c.animaapp.com/mqj9un6oir889A/assets/icon-34.svg"
+];
+
+const iconVariantsTopAgents = [
+  "text-purple-500",
+  "text-yellow-500",
+  "text-green-500",
+  "text-indigo-500"
+];
 
 export const TopAgentsBestProjects = () => {
-  const localitiesList = [
-    { name: "Jagatpura", iconSrc: "https://c.animaapp.com/mqj9un6oir889A/assets/icon-31.svg", iconVariant: "text-purple-500" },
-    { name: "Vaishali Nagar", iconSrc: "https://c.animaapp.com/mqj9un6oir889A/assets/icon-28.svg", iconVariant: "text-yellow-500" },
-    { name: "Mansarovar", iconSrc: "https://c.animaapp.com/mqj9un6oir889A/assets/icon-30.svg", iconVariant: "text-green-500" },
-    { name: "Ajmer Road", iconSrc: "https://c.animaapp.com/mqj9un6oir889A/assets/icon-34.svg", iconVariant: "text-indigo-500" },
-  ];
+  const localitiesList = localities.slice(0, 4);
 
   return (
     <section className="box-border caret-transparent max-w-none outline-[3px] plotpatta-wide mt-16 mx-auto px-4 md:mt-20">
@@ -22,22 +32,17 @@ export const TopAgentsBestProjects = () => {
           Explore premium properties listed by paid agents in Jaipur's top localities.
         </p>
         <div className="box-border caret-transparent gap-x-4 grid grid-cols-[repeat(1,minmax(0px,1fr))] max-w-none outline-[3px] gap-y-4 md:grid-cols-[repeat(4,minmax(0px,1fr))]">
-          {localitiesList.map((locality) => {
-            const href = `/localities/${locality.name
-              .toLowerCase()
-              .replace(/[^a-z0-9]+/g, "-")
-              .replace(/(^-|-$)/g, "")}`;
-
+          {localitiesList.map((locality, index) => {
             return (
               <Link
-                key={locality.name}
-                href={href}
+                key={locality.slug}
+                href={`/localities/${locality.slug}`}
                 className="group items-center box-border caret-transparent flex min-h-[auto] min-w-[auto] outline-[3px] border border-gray-300 p-3 rounded-lg border-solid transition-all duration-300 hover:-translate-y-0.5 hover:border-blue-400 hover:bg-blue-50 hover:shadow-[0_10px_24px_-18px_rgba(37,99,235,0.65)]"
               >
                 <Image
-                  src={locality.iconSrc}
+                  src={iconSrcsTopAgents[index % iconSrcsTopAgents.length]}
                   alt="Icon"
-                  className={`box-border caret-transparent h-6 outline-[3px] w-6 transition-transform duration-300 group-hover:scale-110 ${locality.iconVariant}`}
+                  className={`box-border caret-transparent h-6 outline-[3px] w-6 transition-transform duration-300 group-hover:scale-110 ${iconVariantsTopAgents[index % iconVariantsTopAgents.length]}`}
                 />
                 <span className="text-gray-700 font-semibold box-border caret-transparent block min-h-[auto] min-w-[auto] outline-[3px] ml-2">
                   {locality.name}

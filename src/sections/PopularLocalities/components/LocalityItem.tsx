@@ -5,13 +5,11 @@ export type LocalityItemProps = {
   iconSrc: string;
   iconVariant: string;
   localityName: string;
+  slug: string;
 };
 
 export const LocalityItem = (props: LocalityItemProps) => {
-  const href = `/localities/${props.localityName
-    .toLowerCase()
-    .replace(/[^a-z0-9]+/g, "-")
-    .replace(/(^-|-$)/g, "")}`;
+  const href = `/localities/${props.slug}`;
 
   return (
     <Link

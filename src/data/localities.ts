@@ -56,6 +56,61 @@ export const localities: Locality[] = [
     projectCount: 22,
     nearbyHighlights: ["Metro Station", "Schools", "Hospitals", "Markets"],
   },
+  {
+    slug: "malviya-nagar",
+    name: "Malviya Nagar",
+    city: "Jaipur",
+    state: "Rajasthan",
+    description:
+      "Malviya Nagar is a well-developed residential area in Jaipur with excellent social infrastructure.",
+    averagePriceLabel: "Rs. 60,000 - Rs. 1,00,000 per sq. yd.",
+    projectCount: 8,
+    nearbyHighlights: ["Shopping Malls", "Schools", "Hospitals", "Parks"],
+  },
+  {
+    slug: "c-scheme",
+    name: "C-Scheme",
+    city: "Jaipur",
+    state: "Rajasthan",
+    description:
+      "C-Scheme is a premium commercial and residential locality in central Jaipur.",
+    averagePriceLabel: "Rs. 1,20,000 - Rs. 2,00,000 per sq. yd.",
+    projectCount: 5,
+    nearbyHighlights: ["Shopping Malls", "Restaurants", "Hospitals", "Offices"],
+  },
+  {
+    slug: "bapu-nagar",
+    name: "Bapu Nagar",
+    city: "Jaipur",
+    state: "Rajasthan",
+    description:
+      "Bapu Nagar is a well-established residential area in Jaipur with good connectivity.",
+    averagePriceLabel: "Rs. 50,000 - Rs. 85,000 per sq. yd.",
+    projectCount: 11,
+    nearbyHighlights: ["Schools", "Hospitals", "Markets", "Parks"],
+  },
+  {
+    slug: "diggi-road",
+    name: "Diggi Road",
+    city: "Jaipur",
+    state: "Rajasthan",
+    description:
+      "Diggi Road is a growing residential and commercial area in Jaipur with good access to the city.",
+    averagePriceLabel: "Rs. 35,000 - Rs. 60,000 per sq. yd.",
+    projectCount: 14,
+    nearbyHighlights: ["Schools", "Hospitals", "Markets", "Highway"],
+  },
+  {
+    slug: "sirsi-road",
+    name: "Sirsi Road",
+    city: "Jaipur",
+    state: "Rajasthan",
+    description:
+      "Sirsi Road is an emerging residential corridor in Jaipur with increasing real estate demand.",
+    averagePriceLabel: "Rs. 30,000 - Rs. 55,000 per sq. yd.",
+    projectCount: 16,
+    nearbyHighlights: ["Schools", "Hospitals", "Markets", "Ring Road"],
+  },
 ];
 
 export const getLocalityBySlug = (slug: string) =>
