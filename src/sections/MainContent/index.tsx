@@ -4,6 +4,7 @@ import { SellerHotDeals } from "@/sections/SellerHotDeals";
 import { TopAgentsSection } from "@/sections/TopAgentsSection";
 import { UpcomingProjects } from "@/sections/UpcomingProjects";
 import { PopularLocalities } from "@/sections/PopularLocalities";
+import { TopAgentsBestProjects } from "@/sections/TopAgentsBestProjects";
 import { PreferredAgentsSection } from "@/sections/PreferredAgentsSection";
 import { ExplorePlotsSection } from "@/sections/ExplorePlotsSection";
 import { BigChunksSection } from "@/sections/BigChunksSection";
@@ -283,6 +284,7 @@ export const MainContent = () => {
       <TopAgentsSection />
       <UpcomingProjects />
       <PopularLocalities />
+      <TopAgentsBestProjects />
       <PreferredAgentsSection />
       <ExplorePlotsSection />
       <BigChunksSection />

@@ -1,4 +1,7 @@
 export type Agent = {
+  id: string;
+  user_id: string;
+  plan_type: "Paid" | "Unpaid";
   slug: string;
   name: string;
   company: string;

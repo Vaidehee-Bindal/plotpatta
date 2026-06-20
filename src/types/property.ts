@@ -1,0 +1,31 @@
+export type Property = {
+  id: string;
+  user_id: string;
+  slug: string;
+  title: string;
+  price: string;
+  priceMin: number;
+  currency: "INR";
+  location: string;
+  locality: string;
+  city: string;
+  state: string;
+  plotArea: string;
+  area: string;
+  areaSqYd: number;
+  facing?: string;
+  transaction: string;
+  ownership: string;
+  image: {
+    src: string;
+    alt: string;
+    width: number;
+    height: number;
+  };
+  description?: string;
+  address?: string;
+  amenities?: string[];
+  nearby?: string[];
+  roadWidth?: string;
+  approvedBy?: string;
+};
