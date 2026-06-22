@@ -7,4 +7,8 @@ export type Locality = {
   averagePriceLabel: string;
   projectCount: number;
   nearbyHighlights: string[];
+  imageUrl?: string;
+  tag?: string;
+  tagColor?: string;
+  iconColor?: string;
 };
